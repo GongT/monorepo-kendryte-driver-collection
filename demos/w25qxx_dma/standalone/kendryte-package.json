@@ -1,0 +1,16 @@
+{
+    "name": "kendryte_w25qxx-standalone-dma",
+    "version": "develop",
+    "type": "executable",
+    "dependency": {
+        "kendryte-standalone-sdk": "develop",
+        "kendryte_w25qxx_dma-standalone": "develop"
+    },
+    "source": [
+        "src/*.c"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "header": [
+        "src"
+    ]
+}

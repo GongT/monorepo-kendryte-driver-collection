@@ -1,0 +1,13 @@
+{
+    "name": "kendryte_w25qxx-freertos-demo",
+    "version": "develop",
+    "type": "executable",
+    "dependency": {
+        "kendryte-freertos-sdk": "develop",
+        "kendryte_w25qxx-freertos": "develop"
+    },
+    "source": [
+        "src/*.c"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+}

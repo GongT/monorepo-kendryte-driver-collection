@@ -1,0 +1,19 @@
+{
+    "$schema": "vscode://schemas/CMakeLists",
+    "name": "kendryte_w25qxx-freertos",
+    "version": "develop",
+    "source": [
+        "src/w25qxx.c"
+    ],
+    "dependency": {
+        "kendryte-freertos-sdk": "develop"
+    },
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "header": [
+        "include"
+    ],
+    "type": "library",
+    "include": [
+        "include"
+    ]
+}

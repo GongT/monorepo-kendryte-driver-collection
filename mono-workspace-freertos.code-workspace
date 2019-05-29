@@ -1,0 +1,5 @@
+{"folders":[
+{"name": "Demo: w25qxx_demo", "path": "demos/w25qxx_demo//freertos"},
+{"name": "Driver: w25qxx", "path": "drivers/w25qxx//freertos"},
+{"name": "Freertos SDK", "path": "kendryte-freertos-sdk"}
+]}
