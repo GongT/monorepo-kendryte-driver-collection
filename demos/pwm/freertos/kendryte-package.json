@@ -1,0 +1,15 @@
+{
+    "name": "kendryte_pwm-freertos",
+    "version": "develop",
+    "type": "executable",
+    "dependency": {
+        "kendryte-freertos-sdk": "develop"
+    },
+    "source": [
+        "src/*.c"
+    ],
+    "header": [
+        "src"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+}
