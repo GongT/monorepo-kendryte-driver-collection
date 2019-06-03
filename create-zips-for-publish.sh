@@ -40,7 +40,11 @@ function create_demo_zip() {
 	local PROJ="$1" TYPE="$2"
 
 	IFS='_' PROJ_PART=($(echo "$PROJ"))
-	local TARGET="$TARGET_DIR/${PROJ_PART[0]}-${TYPE}-${PROJ_PART[1]}.zip"
+	if [[ -z "${PROJ_PART[1]}" ]]; then
+		local TARGET="$TARGET_DIR/${PROJ_PART[0]}-${TYPE}.zip"
+	else
+		local TARGET="$TARGET_DIR/${PROJ_PART[0]}-${TYPE}-${PROJ_PART[1]}.zip"
+	fi
 	cd "$PROJ"
 	if ! [[ -e "$TYPE/kendryte-package.json" ]] ; then
 		echo "skip $PROJ ($TYPE)"
