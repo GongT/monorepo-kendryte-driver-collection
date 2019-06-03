@@ -1,6 +1,7 @@
 {"folders":[
 {"name": "Demo: lcd_demo", "path": "demos/lcd_demo//freertos"},
 {"name": "Demo: w25qxx_demo", "path": "demos/w25qxx_demo//freertos"},
+{"name": "Demo: ws2812b", "path": "demos/ws2812b//freertos"},
 {"name": "Driver: lcd-nt35310", "path": "drivers/lcd-nt35310//freertos"},
 {"name": "Driver: w25qxx", "path": "drivers/w25qxx//freertos"},
 {"name": "Freertos SDK", "path": "kendryte-freertos-sdk"}

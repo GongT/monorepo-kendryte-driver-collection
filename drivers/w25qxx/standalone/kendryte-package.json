@@ -1,6 +1,6 @@
 {
     "$schema": "vscode://schemas/CMakeLists",
-    "name": "kendryte_w25qxx-standalone",
+    "name": "kendryte_w25qxx-standalone-driver",
     "version": "develop",
     "source": [
         "src/w25qxx.c"

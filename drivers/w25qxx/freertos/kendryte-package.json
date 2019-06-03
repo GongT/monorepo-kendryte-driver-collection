@@ -1,6 +1,6 @@
 {
     "$schema": "vscode://schemas/CMakeLists",
-    "name": "kendryte_w25qxx-freertos",
+    "name": "kendryte_w25qxx-freertos-driver",
     "version": "develop",
     "source": [
         "src/w25qxx.c"

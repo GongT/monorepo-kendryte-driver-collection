@@ -1,6 +1,6 @@
 {
     "$schema": "vscode://schemas/CMakeLists",
-    "name": "kendryte_lcd-nt35310-standalone",
+    "name": "kendryte_lcd-nt35310-standalone-driver",
     "version": "develop",
     "source": [
         "src/lcd.c",

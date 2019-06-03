@@ -10,8 +10,13 @@ TARGET_DIR=$(realpath "build")
 
 function create_driver_zip() {
 	local PROJ="$1" TYPE="$2"
-	local TARGET="$TARGET_DIR/${PROJ}-${TYPE}.zip"
+	local TARGET="$TARGET_DIR/${PROJ}-${TYPE}-driver.zip"
 	cd "$PROJ"
+	if ! [[ -e "$TYPE/kendryte-package.json" ]] ; then
+		echo -e "\tskip $PROJ ($TYPE)"
+		cd ..
+		return
+	fi
 	if ! [[ -e "README.md" ]] ; then
 		touch README.md
 	fi
@@ -47,7 +52,7 @@ function create_demo_zip() {
 	fi
 	cd "$PROJ"
 	if ! [[ -e "$TYPE/kendryte-package.json" ]] ; then
-		echo "skip $PROJ ($TYPE)"
+		echo -e "\tskip $PROJ ($TYPE)"
 		cd ..
 		return
 	fi

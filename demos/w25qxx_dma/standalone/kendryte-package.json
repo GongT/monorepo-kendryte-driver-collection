@@ -4,7 +4,7 @@
     "type": "executable",
     "dependency": {
         "kendryte-standalone-sdk": "develop",
-        "kendryte_w25qxx-standalone": "develop"
+        "kendryte_w25qxx-standalone-driver": "develop"
     },
     "source": [
         "src/*.c"

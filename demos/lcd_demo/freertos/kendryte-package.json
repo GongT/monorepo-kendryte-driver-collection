@@ -4,7 +4,7 @@
     "type": "executable",
     "dependency": {
         "kendryte-freertos-sdk": "develop",
-        "kendryte_lcd-nt35310-freertos": "develop"
+        "kendryte_lcd-nt35310-freertos-driver": "develop"
     },
     "source": [
         "src/*.c"

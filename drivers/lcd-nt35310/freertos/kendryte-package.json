@@ -1,6 +1,6 @@
 {
     "$schema": "vscode://schemas/CMakeLists",
-    "name": "kendryte_lcd-nt35310-freertos",
+    "name": "kendryte_lcd-nt35310-freertos-driver",
     "version": "develop",
     "source": [
         "src/lcd.c",

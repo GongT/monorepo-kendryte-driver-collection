@@ -1,13 +1,15 @@
 {
-    "name": "kendryte_lcd-standalone-demo",
+    "name": "kendryte_ws2812b-standalone-driver",
     "version": "develop",
-    "type": "executable",
+    "type": "library",
     "dependency": {
-        "kendryte-standalone-sdk": "develop",
-        "kendryte_lcd-nt35310-standalone-driver": "develop"
+        "kendryte-standalone-sdk": "develop"
     },
     "source": [
-        "src/*.c"
+        "src/ws2812b.c"
+    ],
+    "include": [
+        "include"
     ],
     "header": [
         "src"

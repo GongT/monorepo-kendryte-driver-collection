@@ -15,6 +15,10 @@ echo '{"folders":[' > $MONO_FILE_FREERTOS
 function output_driver() {
 	local P="$1"
 	local TYPE="$2"
+	if ! [[ -e "$P/$TYPE/kendryte-package.json" ]]; then
+		mkdir -p "$P/$TYPE"
+		return
+	fi
 	echo -n '{"name": "Driver: '
 	echo -n "$(basename "$P")"
 	echo -n '", "path": "'

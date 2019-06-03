@@ -4,7 +4,7 @@
     "type": "executable",
     "dependency": {
         "kendryte-freertos-sdk": "develop",
-        "kendryte_w25qxx-freertos": "develop"
+        "kendryte_w25qxx-freertos-driver": "develop"
     },
     "source": [
         "src/*.c"

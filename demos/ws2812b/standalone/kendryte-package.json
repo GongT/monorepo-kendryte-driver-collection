@@ -1,13 +1,14 @@
 {
-    "name": "kendryte_w25qxx-standalone-demo",
+    "name": "kendryte_ws2812b-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
         "kendryte-standalone-sdk": "develop",
-        "kendryte_w25qxx-standalone-driver": "develop"
+        "kendryte_ws2812b-standalone-driver": "develop"
     },
     "source": [
-        "src/*.c"
+        "src/main.c"
     ],
+    "header": [],
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
 }
