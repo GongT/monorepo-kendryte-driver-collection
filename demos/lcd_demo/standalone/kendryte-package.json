@@ -1,16 +1,16 @@
 {
-    "name": "kendryte_w25qxx-standalone-dma",
+    "name": "kendryte_lcd-standalone-demo",
     "version": "develop",
     "type": "executable",
     "dependency": {
         "kendryte-standalone-sdk": "develop",
-        "kendryte_w25qxx-standalone": "develop"
+        "kendryte_lcd-nt35310-standalone": "develop"
     },
     "source": [
         "src/*.c"
     ],
-    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
     "header": [
         "src"
-    ]
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
 }

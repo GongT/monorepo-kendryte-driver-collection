@@ -1,7 +1,10 @@
 {"folders":[
+{"name": "Demo: lcd_demo", "path": "demos/lcd_demo//standalone"},
+{"name": "Demo: pwm", "path": "demos/pwm//standalone"},
 {"name": "Demo: w25qxx_demo", "path": "demos/w25qxx_demo//standalone"},
 {"name": "Demo: w25qxx_dma", "path": "demos/w25qxx_dma//standalone"},
 {"name": "Demo: w25qxx_test", "path": "demos/w25qxx_test//standalone"},
+{"name": "Driver: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
 {"name": "Driver: w25qxx", "path": "drivers/w25qxx//standalone"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
 ]}

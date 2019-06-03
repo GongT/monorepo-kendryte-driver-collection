@@ -1,8 +1,8 @@
 [submodule "standalone-sdk"]
 	path = kendryte-standalone-sdk
-	url = https://github.com/kendryte/kendryte-standalone-sdk
+	url = git@github.com:kendryte/kendryte-standalone-sdk.git
 	branch = develop
 [submodule "freertos-sdk"]
 	path = kendryte-freertos-sdk
-	url = https://github.com/kendryte/kendryte-freertos-sdk
+	url = git@github.com:kendryte/kendryte-freertos-sdk.git
 	branch = develop

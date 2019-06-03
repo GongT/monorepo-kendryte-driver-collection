@@ -1,0 +1,27 @@
+{
+    "$schema": "vscode://schemas/CMakeLists",
+    "name": "kendryte_lcd-nt35310-freertos",
+    "version": "develop",
+    "source": [
+        "src/lcd.c",
+        "src/jlt32009a.c"
+    ],
+    "dependency": {
+        "kendryte-freertos-sdk": "develop"
+    },
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "header": [
+        "src",
+        "include"
+    ],
+    "type": "library",
+    "include": [
+        "include"
+    ],
+    "definitions": {
+        "DCX_IO:raw": "8",
+        "DCX_GPIONUM:raw": "2",
+        "SPI_SS_IO:raw": "6",
+        "SPI_SCLK_IO:raw": "7"
+    }
+}

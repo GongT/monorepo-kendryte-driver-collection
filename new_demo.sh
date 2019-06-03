@@ -13,7 +13,7 @@ r)
 esac
 
 if [[ -z "$PROJ" ]] || [[ -z "$TYPE" ]] ; then
-	echo -e "Usage: $0 \e[38;5;14m<ProjectName>\e[0m \e[38;5;9m<'s' or 'p'>\e[0m
+	echo -e "Usage: $0 \e[38;5;14m<ProjectName>\e[0m \e[38;5;9m<'s' or 'r'>\e[0m
 Eg: $0 led s to create new demo 'led' with standalone sdk" >&2
 	exit 1
 fi
