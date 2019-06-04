@@ -1,27 +1,15 @@
 {"folders":[
-{"name": "Demo: face_detect", "path": "demos/face_detect//standalone"},
-{"name": "Demo: i2s", "path": "demos/i2s//standalone"},
-{"name": "Demo: lcd_demo", "path": "demos/lcd_demo//standalone"},
-{"name": "Demo: pwm", "path": "demos/pwm//standalone"},
-{"name": "Demo: w25qxx_demo", "path": "demos/w25qxx_demo//standalone"},
-{"name": "Demo: w25qxx_dma", "path": "demos/w25qxx_dma//standalone"},
-{"name": "Demo: w25qxx_test", "path": "demos/w25qxx_test//standalone"},
-{"name": "Demo: ws2812b", "path": "demos/ws2812b//standalone"},
-{"name": "Driver: camera", "path": "drivers/camera//standalone"},
-{"name": "Driver: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
-{"name": "Driver: w25qxx", "path": "drivers/w25qxx//standalone"},
-{"name": "Driver: ws2812b", "path": "drivers/ws2812b//standalone"},
+{"name": "示例: face-detect", "path": "demos/face-detect//standalone"},
+{"name": "示例: i2s", "path": "demos/i2s//standalone"},
+{"name": "示例: lcd_demo", "path": "demos/lcd_demo//standalone"},
+{"name": "示例: pwm", "path": "demos/pwm//standalone"},
+{"name": "示例: w25qxx_demo", "path": "demos/w25qxx_demo//standalone"},
+{"name": "示例: w25qxx_dma", "path": "demos/w25qxx_dma//standalone"},
+{"name": "示例: w25qxx_test", "path": "demos/w25qxx_test//standalone"},
+{"name": "示例: ws2812b", "path": "demos/ws2812b//standalone"},
+{"name": "驱动: camera", "path": "drivers/camera//standalone"},
+{"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
+{"name": "驱动: w25qxx", "path": "drivers/w25qxx//standalone"},
+{"name": "驱动: ws2812b", "path": "drivers/ws2812b//standalone"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-],
-"settings": {
-    "files.associations": {
-        "main.h": "c",
-        "demo.h": "c",
-        "region_layer.h": "c",
-        "camera.h": "c",
-        "flash-manager.h": "c",
-        "stdio.h": "c",
-        "image_process.h": "c"
-    }
-}
-}
+]}

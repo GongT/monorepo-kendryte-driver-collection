@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/face_detect-standalone",
+    "name": "kendryte/face-detect-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {

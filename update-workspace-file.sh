@@ -19,7 +19,7 @@ function output_driver() {
 		mkdir -p "$P/$TYPE"
 		return
 	fi
-	echo -n '{"name": "Driver: '
+	echo -n '{"name": "驱动: '
 	echo -n "$(basename "$P")"
 	echo -n '", "path": "'
 	echo -n "$P/$TYPE"
@@ -33,7 +33,7 @@ function output_demo() {
 		mkdir -p "$P/$TYPE"
 		return
 	fi
-	echo -n '{"name": "Demo: '
+	echo -n '{"name": "示例: '
 	echo -n "$(basename "$P")"
 	echo -n '", "path": "'
 	echo -n "$P/$TYPE"
