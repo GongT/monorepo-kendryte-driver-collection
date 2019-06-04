@@ -7,7 +7,7 @@
         "src/jlt32009a.c"
     ],
     "dependency": {
-        "kendryte-freertos-sdk": "develop"
+        "kendryte/freertos-sdk": "develop"
     },
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
     "header": [

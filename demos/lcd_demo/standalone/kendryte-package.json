@@ -3,7 +3,7 @@
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte-standalone-sdk": "develop",
+        "kendryte/standalone-sdk": "develop",
         "kendryte/lcd-nt35310-standalone-driver": "develop"
     },
     "source": [
