@@ -1,5 +1,5 @@
 {
-    "name": "kendryte_pwm-standalone",
+    "name": "kendryte/pwm-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {

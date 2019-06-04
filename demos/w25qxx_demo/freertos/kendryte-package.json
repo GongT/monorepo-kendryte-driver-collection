@@ -1,10 +1,10 @@
 {
-    "name": "kendryte_w25qxx-freertos-demo",
+    "name": "kendryte/w25qxx-freertos-demo",
     "version": "develop",
     "type": "executable",
     "dependency": {
         "kendryte-freertos-sdk": "develop",
-        "kendryte_w25qxx-freertos-driver": "develop"
+        "kendryte/w25qxx-freertos-driver": "develop"
     },
     "source": [
         "src/*.c"

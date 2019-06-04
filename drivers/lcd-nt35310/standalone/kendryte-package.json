@@ -1,13 +1,13 @@
 {
     "$schema": "vscode://schemas/CMakeLists",
-    "name": "kendryte_lcd-nt35310-standalone-driver",
+    "name": "kendryte/lcd-nt35310-standalone-driver",
     "version": "develop",
     "source": [
         "src/lcd.c",
         "src/nt35310.c"
     ],
     "dependency": {
-        "kendryte-standalone-sdk": "develop"
+        "kendryte/standalone-sdk": "develop"
     },
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
     "header": [

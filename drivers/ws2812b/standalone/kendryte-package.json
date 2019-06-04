@@ -1,9 +1,9 @@
 {
-    "name": "kendryte_ws2812b-standalone-driver",
+    "name": "kendryte/ws2812b-standalone-driver",
     "version": "develop",
     "type": "library",
     "dependency": {
-        "kendryte-standalone-sdk": "develop"
+        "kendryte/standalone-sdk": "develop"
     },
     "source": [
         "src/ws2812b.c"

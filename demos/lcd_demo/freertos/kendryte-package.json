@@ -1,10 +1,10 @@
 {
-    "name": "kendryte_lcd-freertos-demo",
+    "name": "kendryte/lcd-freertos-demo",
     "version": "develop",
     "type": "executable",
     "dependency": {
         "kendryte-freertos-sdk": "develop",
-        "kendryte_lcd-nt35310-freertos-driver": "develop"
+        "kendryte/lcd-nt35310-freertos-driver": "develop"
     },
     "source": [
         "src/*.c"

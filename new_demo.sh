@@ -29,11 +29,11 @@ fi
 mkdir -p "$(dirname "$PACKAGE")"
 cat > "$PACKAGE" <<PACKAGE_FILE 
 {
-    "name": "kendryte_${TYPE}",
+    "name": "kendryte/${PROJ}-${TYPE}",
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte-${TYPE}-sdk": "develop"
+        "kendryte/${TYPE}-sdk": "develop"
     },
     "source": [
         "src/*.c"

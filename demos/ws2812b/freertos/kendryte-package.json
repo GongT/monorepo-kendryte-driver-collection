@@ -1,5 +1,5 @@
 {
-    "name": "kendryte_ws2812b-freertos",
+    "name": "kendryte/ws2812b-freertos",
     "version": "develop",
     "type": "executable",
     "dependency": {

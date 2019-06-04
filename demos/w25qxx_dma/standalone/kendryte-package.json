@@ -1,10 +1,10 @@
 {
-    "name": "kendryte_w25qxx-standalone-dma",
+    "name": "kendryte/w25qxx-standalone-dma",
     "version": "develop",
     "type": "executable",
     "dependency": {
         "kendryte-standalone-sdk": "develop",
-        "kendryte_w25qxx-standalone-driver": "develop"
+        "kendryte/w25qxx-standalone-driver": "develop"
     },
     "source": [
         "src/*.c"

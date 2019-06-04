@@ -1,4 +1,5 @@
 {"folders":[
+{"name": "Demo: i2s", "path": "demos/i2s//freertos"},
 {"name": "Demo: lcd_demo", "path": "demos/lcd_demo//freertos"},
 {"name": "Demo: pwm", "path": "demos/pwm//freertos"},
 {"name": "Demo: w25qxx_demo", "path": "demos/w25qxx_demo//freertos"},

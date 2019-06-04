@@ -1,10 +1,10 @@
 {
-    "name": "kendryte_lcd-standalone-demo",
+    "name": "kendryte/lcd-standalone-demo",
     "version": "develop",
     "type": "executable",
     "dependency": {
         "kendryte-standalone-sdk": "develop",
-        "kendryte_lcd-nt35310-standalone-driver": "develop"
+        "kendryte/lcd-nt35310-standalone-driver": "develop"
     },
     "source": [
         "src/*.c"

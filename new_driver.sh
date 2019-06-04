@@ -31,11 +31,11 @@ mkdir -p "drivers/$PROJ/$TYPE/src"
 
 cat > "$PACKAGE" <<PACKAGE_FILE 
 {
-    "name": "kendryte_${PROJ}-${TYPE}-driver",
+    "name": "kendryte/${PROJ}-${TYPE}-driver",
     "version": "develop",
     "type": "library",
     "dependency": {
-        "kendryte-${TYPE}-sdk": "develop"
+        "kendryte/${TYPE}-sdk": "develop"
     },
     "source": [
         "src/${PROJ}.c"

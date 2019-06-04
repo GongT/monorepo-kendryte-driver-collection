@@ -21,15 +21,14 @@ function create_driver_zip() {
 		touch README.md
 	fi
 	zip "$TARGET" README.md >/dev/null
-	cd "$TYPE"
 	zip \
 		"--exclude=.*" \
 		"--exclude=.*/*" \
 	       	"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
-		-ur "$TARGET" * >/dev/null
+		-ur "$TARGET" "${TYPE}" >/dev/null
 
-	cd ../..
+	cd ..
 }
 
 cd drivers
@@ -62,15 +61,14 @@ function create_demo_zip() {
 		touch README.md
 	fi
 	zip "$TARGET" README.md >/dev/null
-	cd "$TYPE"
 	zip \
 		"--exclude=.*" \
 		"--exclude=.*/*" \
 	       	"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
-		-ur "$TARGET" * >/dev/null
+		-ur "$TARGET" "${TYPE}" >/dev/null
 
-	cd ../..
+	cd ..
 }
 
 cd demos

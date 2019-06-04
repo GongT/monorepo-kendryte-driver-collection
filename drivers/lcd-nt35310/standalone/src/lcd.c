@@ -48,6 +48,7 @@ void lcd_init(void)
 
 void lcd_set_direction(lcd_dir_t dir)
 {
+    dir |= 0x08;
     lcd_ctl.dir = dir;
     if(dir & DIR_XY_MASK)
     {

@@ -1,9 +1,9 @@
 {
-    "name": "kendryte_pwm-freertos",
+    "name": "kendryte/pwm-freertos",
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte-freertos-sdk": "develop"
+        "kendryte/freertos-sdk": "develop"
     },
     "source": [
         "src/*.c"
