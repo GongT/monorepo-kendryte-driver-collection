@@ -1,0 +1,8 @@
+{
+    "name": "kendryte/KD233",
+    "version": "develop",
+    "type": "define",
+    "dependency": {
+    },
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+}

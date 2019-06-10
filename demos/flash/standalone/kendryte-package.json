@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/w25qxx-standalone-test",
+    "name": "kendryte/flash-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
@@ -9,8 +9,5 @@
     "source": [
         "src/*.c"
     ],
-    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
-    "header": [
-        "src"
-    ]
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
 }

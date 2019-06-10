@@ -6,7 +6,8 @@
         "kendryte/standalone-sdk": "develop",
         "kendryte/camera-standalone-driver": "develop",
         "kendryte/lcd-nt35310-standalone-driver": "develop",
-        "kendryte/w25qxx-standalone-driver": "develop"
+        "kendryte/w25qxx-standalone-driver": "develop",
+        "kendryte/ai_image": "develop"
     },
     "source": [
         "src/*.c"

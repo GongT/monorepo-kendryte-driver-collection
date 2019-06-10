@@ -1,13 +1,17 @@
 {
-    "name": "kendryte/w25qxx-standalone-demo",
+    "name": "kendryte/ai_image",
     "version": "develop",
-    "type": "executable",
+    "type": "library",
     "dependency": {
-        "kendryte/standalone-sdk": "develop",
-        "kendryte/w25qxx-standalone-driver": "develop"
     },
     "source": [
         "src/*.c"
+    ],
+    "include": [
+        "include"
+    ],
+    "header": [
+        "src"
     ],
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
 }

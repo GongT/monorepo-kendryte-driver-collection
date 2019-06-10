@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/w25qxx-standalone-dma",
+    "name": "kendryte/flash-dma-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {

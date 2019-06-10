@@ -39,15 +39,45 @@ function output_demo() {
 	echo -n "$P/$TYPE"
 	echo '"},'
 }
+function output_library() {
+	local P="$1"
+	if ! [[ -e "$P/kendryte-package.json" ]]; then
+		mkdir -p "$P"
+		return
+	fi
+	echo -n '{"name": "库: '
+	echo -n "$(basename "$P")"
+	echo -n '", "path": "'
+	echo -n "$P"
+	echo '"},'
+}
+function output_board() {
+	local P="$1"
+	if ! [[ -e "$P/kendryte-package.json" ]]; then
+		mkdir -p "$P"
+		return
+	fi
+	echo -n '{"name": "开发板: '
+	echo -n "$(basename "$P")"
+	echo -n '", "path": "'
+	echo -n "$P"
+	echo '"},'
+}
+export -f output_board
+export -f output_library
 export -f output_driver
 export -f output_demo
 
 ls -d demos/*/ | xargs -IF bash -c "output_demo 'F' standalone" >> $MONO_FILE_STANDALONE
 ls -d drivers/*/ | xargs -IF bash -c "output_driver 'F' standalone" >> $MONO_FILE_STANDALONE
+ls -d libraries/*/ | xargs -IF bash -c "output_library 'F'" >> $MONO_FILE_STANDALONE
+ls -d boards/*/ | xargs -IF bash -c "output_board 'F'" >> $MONO_FILE_STANDALONE
 echo '{"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}' >> $MONO_FILE_STANDALONE
 
 ls -d demos/*/ | xargs -IF bash -c "output_demo 'F' freertos" >> $MONO_FILE_FREERTOS
 ls -d drivers/*/ | xargs -IF bash -c "output_driver 'F' freertos" >> $MONO_FILE_FREERTOS
+ls -d libraries/*/ | xargs -IF bash -c "output_library 'F'" >> $MONO_FILE_FREERTOS
+ls -d boards/*/ | xargs -IF bash -c "output_board 'F'" >> $MONO_FILE_FREERTOS
 echo '{"name": "Freertos SDK", "path": "kendryte-freertos-sdk"}' >> $MONO_FILE_FREERTOS
 
 echo "]}" >> $MONO_FILE_STANDALONE
