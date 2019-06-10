@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/lcd-standalone-demo",
+    "name": "kendryte/screen-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {

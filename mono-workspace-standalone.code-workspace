@@ -1,10 +1,12 @@
 {"folders":[
+{"name": "示例: camera-screen", "path": "demos/camera-screen//standalone"},
+{"name": "示例: camera-sdcard", "path": "demos/camera-sdcard//standalone"},
 {"name": "示例: face-detect", "path": "demos/face-detect//standalone"},
 {"name": "示例: flash", "path": "demos/flash//standalone"},
 {"name": "示例: flash-dma", "path": "demos/flash-dma//standalone"},
 {"name": "示例: i2s", "path": "demos/i2s//standalone"},
-{"name": "示例: lcd_demo", "path": "demos/lcd_demo//standalone"},
 {"name": "示例: pwm", "path": "demos/pwm//standalone"},
+{"name": "示例: screen", "path": "demos/screen//standalone"},
 {"name": "示例: ws2812b", "path": "demos/ws2812b//standalone"},
 {"name": "驱动: camera", "path": "drivers/camera//standalone"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
@@ -13,4 +15,11 @@
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-]}
+],
+"settings": {
+    "files.associations": {
+        "stdio.h": "c",
+        "icon_generate.h": "c"
+    }
+}
+}

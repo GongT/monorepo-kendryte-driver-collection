@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <fpioa.h>
 #include <lcd.h>
 #include <stdio.h>
-#include "fpioa.h"
-#include "sysctl.h"
+#include <sysctl.h>
+#include <sleep.h>
+#include "icon_generate.h"
 
 uint32_t g_lcd_gram[LCD_X_MAX * LCD_Y_MAX / 2] __attribute__((aligned(128)));
 
@@ -35,13 +37,29 @@ static void io_mux_init(void)
 int main(void)
 {
     printf("lcd test\n");
+
+    // TODO: fpioa
     io_mux_init();
     io_set_power();
+
     lcd_init();
+
     lcd_clear(RED);
+    msleep(500);
+    lcd_clear(GREEN);
+    msleep(500);
+    lcd_clear(BLUE);
+    msleep(500);
+    lcd_clear(WHITE);
+
+    lcd_set_direction(DIR_XY_LRUD);
     lcd_draw_picture(0, 0, 240, 160, g_lcd_gram);
-    lcd_draw_string(16, 40, "Canaan", RED);
-    lcd_draw_string(16, 80, "Kendryte K210", BLUE);
-    while(1)
-        ;
+    lcd_draw_string(16, 40, "Canaan", CYAN);
+
+    lcd_draw_picture((240-IMAGE_HEIGHT)/2, (320-IMAGE_WIDTH)/2, IMAGE_HEIGHT, IMAGE_WIDTH, rgb_image);
+
+    lcd_set_direction(DIR_XY_RLDU);
+    lcd_draw_string(16, 40, "Kendryte K210", ORANGE);
+
+    while(1);
 }

@@ -1,15 +1,14 @@
 {
-    "name": "kendryte/lcd-freertos-demo",
+    "name": "kendryte/camera-screen-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte/freertos-sdk": "develop",
-        "kendryte/lcd-nt35310-freertos-driver": "develop"
+        "kendryte/standalone-sdk": "develop"
     },
     "source": [
         "src/*.c"
     ],
-    "header": [
+	"header": [
         "src"
     ],
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
