@@ -79,6 +79,61 @@ for N in */ ; do
 done
 cd ..
 
+function create_library_zip() {
+	local PROJ="$1"
+
+	local TARGET="$TARGET_DIR/${PROJ}.zip"
+	if ! [[ -e "$PROJ/kendryte-package.json" ]] ; then
+		echo -e "\tskip $PROJ"
+		return
+	fi
+
+	echo "Create zip file for library $PROJ..."
+	if ! [[ -e "$PROJ/README.md" ]] ; then
+		touch "$PROJ/README.md"
+	fi
+	zip \
+		"--exclude=.*" \
+		"--exclude=.*/*" \
+	       	"--exclude=build/*" \
+		"--exclude=kendryte_libraries/*" \
+		-ur "$TARGET" "${PROJ}" >/dev/null
+}
+
+cd libraries
+for N in */ ; do
+	N=$(basename "$N")
+	create_library_zip "$N"
+done
+cd ..
+
+function create_board_zip() {
+	local PROJ="$1"
+
+	local TARGET="$TARGET_DIR/${PROJ}.zip"
+	if ! [[ -e "$PROJ/kendryte-package.json" ]] ; then
+		echo -e "\tskip $PROJ"
+		return
+	fi
+
+	echo "Create zip file for board $PROJ..."
+	if ! [[ -e "$PROJ/README.md" ]] ; then
+		touch "$PROJ/README.md"
+	fi
+	zip \
+		"--exclude=.*" \
+		"--exclude=.*/*" \
+	       	"--exclude=build/*" \
+		"--exclude=kendryte_libraries/*" \
+		-ur "$TARGET" "${PROJ}" >/dev/null
+}
+
+cd boards
+for N in */ ; do
+	N=$(basename "$N")
+	create_board_zip "$N"
+done
+cd ..
 
 echo "All done."
 
