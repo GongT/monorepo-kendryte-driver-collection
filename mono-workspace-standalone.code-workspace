@@ -16,4 +16,10 @@
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-]}
+],
+"settings": {
+    "files.associations": {
+        "fpioa-config.h": "c"
+    }
+}
+}

@@ -1,0 +1,8 @@
+{
+    "selectedChip": "Kendryte K210",
+    "funcPinMap": {
+        "I2S1_OUT_D3": "C2"
+    },
+    "downloadSections": [],
+    "baseAddress": "0x601000"
+}

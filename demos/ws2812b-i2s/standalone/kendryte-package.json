@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/ws2812b-i2c-standalone",
+    "name": "kendryte/ws2812b-i2s-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {

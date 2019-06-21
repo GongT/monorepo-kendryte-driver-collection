@@ -6,7 +6,6 @@
 #include <uarths.h>
 #include "ws2812b.h"
 
-#define WS_PIN 40
 #define I2S_NUM I2S_DEVICE_1
 
 ws2812_info *ws_info;
@@ -16,8 +15,15 @@ int main(void)
     sysctl_cpu_set_freq(500000000UL);
     uarths_init();
 
-    sysctl_pll_set_freq(SYSCTL_PLL2, 45158400UL);
-    ws2812_init_i2s(WS_PIN, I2S_NUM, I2S_CHANNEL_3);
+    uint32_t pll2_rate = 45158400UL;
+    sysctl_pll_set_freq(SYSCTL_PLL2, pll2_rate);
+    uint32_t sample_rate = pll2_rate / (2 * 32 * 2) - 1;
+    i2s_set_sample_rate(I2S_NUM, sample_rate);
+    i2s_init(I2S_NUM, I2S_TRANSMITTER, 0x3 << 2 * I2S_CHANNEL_3);
+    i2s_tx_channel_config(I2S_NUM, I2S_CHANNEL_3,
+                          RESOLUTION_32_BIT, SCLK_CYCLES_32,
+                          TRIGGER_LEVEL_4,
+                          LEFT_JUSTIFYING_MODE);
 
     ws_info = ws2812_get_buf(6);
 

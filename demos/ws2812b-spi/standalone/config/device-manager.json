@@ -1,0 +1,6 @@
+{
+    "selectedChip": "Kendryte K210",
+    "funcPinMap": {
+        "SPI0_D0": "C2"
+    }
+}

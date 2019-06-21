@@ -16,8 +16,6 @@ int main(void)
     sysctl_cpu_set_freq(500000000UL);
     uarths_init();
 
-    ws2812_init_spi(WS_PIN, SPI_NUM);
-
     ws_info = ws2812_get_buf(6);
 
     printk("WS_SPI_TEST\n");
