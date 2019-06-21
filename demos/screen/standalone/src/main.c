@@ -14,9 +14,9 @@
  */
 #include <fpioa.h>
 #include <lcd.h>
+#include <sleep.h>
 #include <stdio.h>
 #include <sysctl.h>
-#include <sleep.h>
 #include "icon_generate.h"
 
 uint32_t g_lcd_gram[LCD_X_MAX * LCD_Y_MAX / 2] __attribute__((aligned(128)));
@@ -28,9 +28,6 @@ static void io_set_power(void)
 
 static void io_mux_init(void)
 {
-    fpioa_set_function(8, FUNC_GPIOHS2);
-    fpioa_set_function(6, FUNC_SPI0_SS3);
-    fpioa_set_function(7, FUNC_SPI0_SCLK);
     sysctl_set_spi0_dvp_data(1);
 }
 
@@ -38,7 +35,6 @@ int main(void)
 {
     printf("lcd test\n");
 
-    // TODO: fpioa
     io_mux_init();
     io_set_power();
 
@@ -56,10 +52,11 @@ int main(void)
     lcd_draw_picture(0, 0, 240, 160, g_lcd_gram);
     lcd_draw_string(16, 40, "Canaan", CYAN);
 
-    lcd_draw_picture((240-IMAGE_HEIGHT)/2, (320-IMAGE_WIDTH)/2, IMAGE_HEIGHT, IMAGE_WIDTH, rgb_image);
+    lcd_draw_picture((240 - IMAGE_HEIGHT) / 2, (320 - IMAGE_WIDTH) / 2, IMAGE_HEIGHT, IMAGE_WIDTH, rgb_image);
 
     lcd_set_direction(DIR_XY_RLDU);
     lcd_draw_string(16, 40, "Kendryte K210", ORANGE);
 
-    while(1);
+    while(1)
+        ;
 }
