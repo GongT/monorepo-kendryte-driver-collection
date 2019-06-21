@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/ws2812b-standalone",
+    "name": "kendryte/ws2812b-i25-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
@@ -7,8 +7,11 @@
         "kendryte/ws2812b-standalone-driver": "develop"
     },
     "source": [
-        "src/main.c"
+        "src/*.c"
     ],
-    "header": [],
-    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+    "header": [
+        "src"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "definitions": {}
 }

@@ -7,7 +7,8 @@
 {"name": "示例: i2s", "path": "demos/i2s//standalone"},
 {"name": "示例: pwm", "path": "demos/pwm//standalone"},
 {"name": "示例: screen", "path": "demos/screen//standalone"},
-{"name": "示例: ws2812b", "path": "demos/ws2812b//standalone"},
+{"name": "示例: ws2812b-i2s", "path": "demos/ws2812b-i2s//standalone"},
+{"name": "示例: ws2812b-spi", "path": "demos/ws2812b-spi//standalone"},
 {"name": "驱动: camera", "path": "drivers/camera//standalone"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
 {"name": "驱动: w25qxx", "path": "drivers/w25qxx//standalone"},
@@ -15,11 +16,4 @@
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-],
-"settings": {
-    "files.associations": {
-        "stdio.h": "c",
-        "icon_generate.h": "c"
-    }
-}
-}
+]}

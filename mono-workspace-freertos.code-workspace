@@ -2,7 +2,6 @@
 {"name": "示例: flash", "path": "demos/flash//freertos"},
 {"name": "示例: i2s", "path": "demos/i2s//freertos"},
 {"name": "示例: pwm", "path": "demos/pwm//freertos"},
-{"name": "示例: ws2812b", "path": "demos/ws2812b//freertos"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//freertos"},
 {"name": "驱动: w25qxx", "path": "drivers/w25qxx//freertos"},
 {"name": "库: ai_image", "path": "libraries/ai_image/"},

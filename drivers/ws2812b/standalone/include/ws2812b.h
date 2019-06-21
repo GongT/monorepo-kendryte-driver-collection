@@ -1,10 +1,10 @@
 #ifndef _WS2812_H
 #define _WS2812_H
-#include "dmac.h"
-#include "i2s.h"
-#include "spi.h"
-#include "stdbool.h"
-#include "stddef.h"
+#include <dmac.h>
+#include <i2s.h>
+#include <spi.h>
+#include <stdbool.h>
+#include <stddef.h>
 
 typedef struct _WS2812_DATA
 {

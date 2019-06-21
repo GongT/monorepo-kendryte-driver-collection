@@ -1,18 +1,17 @@
 {
-    "name": "kendryte/ws2812b-freertos",
+    "name": "kendryte/ws2812b-i2c-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte/freertos-sdk": "develop"
+        "kendryte/standalone-sdk": "develop",
+        "kendryte/ws2812b-standalone-driver": "develop"
     },
     "source": [
-        "src/main.c"
+        "src/*.c"
     ],
     "header": [
         "src"
     ],
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
-    "definitions": {
-        "WS2812B_PIN:raw": "40"
-    }
+    "definitions": {}
 }
