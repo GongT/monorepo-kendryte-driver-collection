@@ -10,7 +10,6 @@
 {"name": "示例: pwm", "path": "demos/pwm//standalone"},
 {"name": "示例: screen", "path": "demos/screen//standalone"},
 {"name": "示例: ws2812b-i2s", "path": "demos/ws2812b-i2s//standalone"},
-{"name": "示例: ws2812b_i2s", "path": "demos/ws2812b_i2s//standalone"},
 {"name": "示例: ws2812b-spi", "path": "demos/ws2812b-spi//standalone"},
 {"name": "驱动: camera", "path": "drivers/camera//standalone"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
