@@ -1,0 +1,7 @@
+{
+    "selectedChip": "Kendryte K210",
+    "funcPinMap": {
+        "TIMER1_TOGGLE1": "B8",
+        "TIMER1_TOGGLE2": "A8"
+    }
+}
