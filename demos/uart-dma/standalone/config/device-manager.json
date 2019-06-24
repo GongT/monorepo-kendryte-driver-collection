@@ -1,0 +1,8 @@
+{
+    "funcPinMap": {
+        "UART3_RX": "H11",
+        "UART3_TX": "H12",
+        "GPIO0": "B8"
+    },
+    "selectedChip": "Kendryte K210"
+}
