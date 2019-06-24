@@ -128,12 +128,12 @@ function create_board_zip() {
 		-ur "$TARGET" "${PROJ}" >/dev/null
 }
 
-cd boards
-for N in */ ; do
-	N=$(basename "$N")
-	create_board_zip "$N"
-done
-cd ..
+#cd boards
+#for N in */ ; do
+#	N=$(basename "$N")
+#	create_board_zip "$N"
+#done
+#cd ..
 
 echo "All done."
 

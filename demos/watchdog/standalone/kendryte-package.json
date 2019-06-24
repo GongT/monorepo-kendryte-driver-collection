@@ -1,13 +1,15 @@
 {
-    "name": "kendryte/flash-freertos",
+    "name": "kendryte/watchdog-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte/freertos-sdk": "develop",
-        "kendryte/w25qxx-freertos-driver": "develop"
+        "kendryte/standalone-sdk": "develop"
     },
     "source": [
         "src/*.c"
+    ],
+	"header": [
+        "src"
     ],
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
 }
