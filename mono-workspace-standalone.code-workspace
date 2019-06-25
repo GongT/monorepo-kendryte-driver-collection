@@ -26,9 +26,17 @@
 {"name": "示例: ws2812b-spi", "path": "demos/ws2812b-spi//standalone"},
 {"name": "驱动: camera", "path": "drivers/camera//standalone"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
+{"name": "驱动: sdcard", "path": "drivers/sdcard//standalone"},
 {"name": "驱动: w25qxx", "path": "drivers/w25qxx//standalone"},
+{"name": "驱动: wav", "path": "drivers/wav//standalone"},
 {"name": "驱动: ws2812b", "path": "drivers/ws2812b//standalone"},
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-]}
+],
+"settings": {
+    "files.associations": {
+        "wav_decode.h": "c"
+    }
+}
+}
