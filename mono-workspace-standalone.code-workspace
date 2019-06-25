@@ -13,8 +13,8 @@
 {"name": "示例: pwm-play-audio", "path": "demos/pwm-play-audio//standalone"},
 {"name": "示例: pwm-wav", "path": "demos/pwm-wav//standalone"},
 {"name": "示例: screen", "path": "demos/screen//standalone"},
-{"name": "示例: sdcard", "path": "demos/sdcard//standalone"},
 {"name": "示例: sdcard-file", "path": "demos/sdcard-file//standalone"},
+{"name": "示例: sdcard-music", "path": "demos/sdcard-music//standalone"},
 {"name": "示例: spi-slave", "path": "demos/spi-slave//standalone"},
 {"name": "示例: timer", "path": "demos/timer//standalone"},
 {"name": "示例: uart", "path": "demos/uart//standalone"},
@@ -33,10 +33,4 @@
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-],
-"settings": {
-    "files.associations": {
-        "wav_decode.h": "c"
-    }
-}
-}
+]}

@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/sdcard-standalone",
+    "name": "kendryte/sdcard-music-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {
