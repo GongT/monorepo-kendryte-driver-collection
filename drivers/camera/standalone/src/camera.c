@@ -14,7 +14,7 @@ static void io_set_power(void)
 
 void camera_init()
 {
-    sysctl_set_spi0_dvp_data(1);
+    // sysctl_set_spi0_dvp_data(1);
     gpiohs_set_drive_mode(8, GPIO_DM_INPUT);
 
     io_set_power();
