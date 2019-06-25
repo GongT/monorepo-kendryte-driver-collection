@@ -9,7 +9,6 @@
 {"name": "示例: i2s", "path": "demos/i2s//standalone"},
 {"name": "示例: kpu", "path": "demos/kpu//standalone"},
 {"name": "示例: pwm", "path": "demos/pwm//standalone"},
-{"name": "示例: pwm-play", "path": "demos/pwm-play//standalone"},
 {"name": "示例: pwm-play-audio", "path": "demos/pwm-play-audio//standalone"},
 {"name": "示例: pwm-wav", "path": "demos/pwm-wav//standalone"},
 {"name": "示例: screen", "path": "demos/screen//standalone"},
@@ -36,7 +35,8 @@
 ],
 "settings": {
     "files.associations": {
-        "w25qxx.h": "c"
+        "test_wav.h": "c",
+        "test_16bit_mono_wav.h": "c"
     }
 }
 }
