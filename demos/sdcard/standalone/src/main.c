@@ -16,28 +16,12 @@ static int fs_test(void);
 static int wav_test(TCHAR *path);
 FRESULT sd_write_test(TCHAR *path);
 
-void io_mux_init(void)
-{
-    fpioa_set_function(29, FUNC_SPI0_SCLK);
-    fpioa_set_function(30, FUNC_SPI0_D0);
-    fpioa_set_function(31, FUNC_SPI0_D1);
-	fpioa_set_function(32, FUNC_GPIOHS7);
-
-    fpioa_set_function(24, FUNC_SPI0_SS3);
-
-    fpioa_set_function(33, FUNC_I2S0_OUT_D0);
-    fpioa_set_function(35, FUNC_I2S0_SCLK);
-    fpioa_set_function(34, FUNC_I2S0_WS);
-
-}
-
 int main(void)
 {
     sysctl_pll_set_freq(SYSCTL_PLL0, 320000000UL);
     sysctl_pll_set_freq(SYSCTL_PLL1, 160000000UL);
     sysctl_pll_set_freq(SYSCTL_PLL2, 45158400UL);
 
-    io_mux_init();
     dmac_init();
     plic_init();
     sysctl_enable_irq();
