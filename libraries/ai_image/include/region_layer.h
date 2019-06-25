@@ -1,8 +1,8 @@
 #ifndef _REGION_LAYER
 #define _REGION_LAYER
 
-#include <stdint.h>
 #include <kpu.h>
+#include <stdint.h>
 
 typedef struct
 {
@@ -44,5 +44,8 @@ typedef struct
 int region_layer_init(region_layer_t *rl, int width, int height, int channels, int origin_width, int origin_height);
 void region_layer_deinit(region_layer_t *rl);
 void region_layer_run(region_layer_t *rl, obj_info_t *obj_info);
+
+typedef void (*callback_draw_box)(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, uint32_t class, float prob);
+void region_layer_draw_boxes(region_layer_t *rl, callback_draw_box callback);
 
 #endif // _REGION_LAYER

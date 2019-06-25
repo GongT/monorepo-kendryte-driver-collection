@@ -1,0 +1,16 @@
+{
+    "selectedChip": "Kendryte K210",
+    "funcPinMap": {
+        "SPI0_SS3": "G11",
+        "SPI0_SCLK": "G12",
+        "GPIOHS2": "F11",
+        "CMOS_RST": "E12",
+        "CMOS_PWDN": "D12",
+        "CMOS_XCLK": "C11",
+        "CMOS_VSYNC": "D11",
+        "CMOS_HREF": "A12",
+        "CMOS_PCLK": "C12",
+        "SCCB_SCLK": "E11",
+        "SCCB_SDA": "F12"
+    }
+}

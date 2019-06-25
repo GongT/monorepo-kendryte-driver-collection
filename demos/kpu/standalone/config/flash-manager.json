@@ -1,0 +1,18 @@
+{
+    "$schema": "vscode://schemas/flasher",
+    "downloadSections": [
+        {
+            "id": "1559646153293",
+            "filesize": 1351592,
+            "name": "KMODEL",
+            "address": "0x601000",
+            "autoAddress": true,
+            "filename": "yolo.kmodel",
+            "addressEnd": "0x74B000",
+            "swapBytes": false
+        }
+    ],
+    "baseAddress": "0x601000",
+    "totalSize": 1351592,
+    "endAddress": "0x74B000"
+}

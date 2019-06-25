@@ -107,9 +107,11 @@ void main(void)
 {
     sysctl_pll_set_freq(SYSCTL_PLL0, PLL0_OUTPUT_FREQ);
     sysctl_pll_set_freq(SYSCTL_PLL1, PLL1_OUTPUT_FREQ);
+    sysctl_set_spi0_dvp_data(1);
+
     sysctl_clock_enable(SYSCTL_CLOCK_AI);
+
     uarths_init();
-    camera_init();
     plic_init();
 
     printf("flash init\n");
@@ -118,23 +120,18 @@ void main(void)
 
     w25qxx_read_data(KMODEL_START, model_data, KMODEL_SIZE, W25QXX_QUAD_FAST);
 
+    printf("LCD init\n");
     lcd_init();
-    lcd_clear(BLACK);
-
 #if BOARD_LICHEEDAN
-#if OV5640
     lcd_set_direction(DIR_YX_RLUD);
 #else
-    lcd_set_direction(DIR_YX_RLDU);
-#endif
-#else
-#if OV5640
     lcd_set_direction(DIR_YX_RLUD);
-#else
-    lcd_set_direction(DIR_YX_LRDU);
 #endif
-#endif
+    lcd_clear(BLACK);
+    lcd_draw_string(136, 70, "DEMO", WHITE);
+    lcd_draw_string(104, 150, "face detection", WHITE);
 
+    printf("DVP init\n");
     camera_init();
 
     kpu_image.pixel = 3;
