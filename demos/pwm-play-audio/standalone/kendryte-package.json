@@ -1,0 +1,18 @@
+{
+    "name": "kendryte/pwm-play-audio-standalone",
+    "version": "develop",
+    "type": "executable",
+    "dependency": {
+        "kendryte/standalone-sdk": "develop"
+    },
+    "source": [
+        "src/*.c"
+    ],
+    "header": [
+        "src"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "definitions": {
+        "DEMO_NUMBER:raw": "5"
+    }
+}
