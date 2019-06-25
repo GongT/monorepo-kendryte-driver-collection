@@ -123,7 +123,7 @@ void main(void)
     printf("LCD init\n");
     lcd_init();
 #if BOARD_LICHEEDAN
-    lcd_set_direction(DIR_YX_RLUD);
+    lcd_set_direction(DIR_YX_LRDU);
 #else
     lcd_set_direction(DIR_YX_RLUD);
 #endif

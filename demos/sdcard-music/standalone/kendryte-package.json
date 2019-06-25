@@ -4,8 +4,8 @@
     "type": "executable",
     "dependency": {
         "kendryte/standalone-sdk": "develop",
-        "kendryte/wav-standalone-driver": "develop",
-        "kendryte/sdcard-standalone-driver": "develop"
+        "kendryte/sdcard-standalone-driver": "develop",
+        "kendryte/sdcard-file-wav-standalone-driver": "develop"
     },
     "source": [
         "src/*.c"

@@ -50,39 +50,39 @@ void SD_CS_LOW(void)
 
 void SD_HIGH_SPEED_ENABLE(void)
 {
-    spi_set_clk_rate(SPI_DEVICE_0, 10000000);
+    spi_set_clk_rate(SPI_DEVICE_INDEX, 10000000);
 }
 
-static void sd_lowlevel_init(uint8_t spi_index)
+static void sd_lowlevel_init()
 {
     gpiohs_set_drive_mode(7, GPIO_DM_OUTPUT);
-    spi_set_clk_rate(SPI_DEVICE_0, 200000);     /*set clk rate*/
+    spi_set_clk_rate(SPI_DEVICE_INDEX, 200000);     /*set clk rate*/
 }
 
 static void sd_write_data(uint8_t *data_buff, uint32_t length)
 {
-    spi_init(SPI_DEVICE_0, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
-    spi_send_data_standard(SPI_DEVICE_0, SPI_CHIP_SELECT_3, NULL, 0, data_buff, length);
+    spi_init(SPI_DEVICE_INDEX, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
+    spi_send_data_standard(SPI_DEVICE_INDEX, SPI_CHIP_SELECT_3, NULL, 0, data_buff, length);
 }
 
 static void sd_read_data(uint8_t *data_buff, uint32_t length)
 {
 
-    spi_init(SPI_DEVICE_0, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
-    spi_receive_data_standard(SPI_DEVICE_0, SPI_CHIP_SELECT_3, NULL, 0, data_buff, length);
+    spi_init(SPI_DEVICE_INDEX, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
+    spi_receive_data_standard(SPI_DEVICE_INDEX, SPI_CHIP_SELECT_3, NULL, 0, data_buff, length);
 
 }
 
 static void sd_write_data_dma(uint8_t *data_buff)
 {
-    spi_init(SPI_DEVICE_0, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
-    spi_send_data_standard_dma(DMAC_CHANNEL0, SPI_DEVICE_0, SPI_CHIP_SELECT_3, NULL, 0, (uint8_t *)(data_buff), 128 * 4);
+    spi_init(SPI_DEVICE_INDEX, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
+    spi_send_data_standard_dma(DMAC_CHANNEL0, SPI_DEVICE_INDEX, SPI_CHIP_SELECT_3, NULL, 0, (uint8_t *)(data_buff), 128 * 4);
 }
 
 static void sd_read_data_dma(uint8_t *data_buff)
 {
-    spi_init(SPI_DEVICE_0, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
-    spi_receive_data_standard_dma(-1, DMAC_CHANNEL0, SPI_DEVICE_0, SPI_CHIP_SELECT_3,NULL, 0, data_buff,128 * 4);
+    spi_init(SPI_DEVICE_INDEX, SPI_WORK_MODE_0, SPI_FF_STANDARD, 8, 0);
+    spi_receive_data_standard_dma(-1, DMAC_CHANNEL0, SPI_DEVICE_INDEX, SPI_CHIP_SELECT_3,NULL, 0, data_buff,128 * 4);
 }
 
 /*

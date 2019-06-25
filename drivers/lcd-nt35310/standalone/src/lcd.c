@@ -39,7 +39,11 @@ void lcd_init(void)
     tft_write_command(PIXEL_FORMAT_SET);
     data = 0x55;
     tft_write_byte(&data, 1);
-    lcd_set_direction(DIR_XY_LRUD);
+#if BOARD_LICHEEDAN
+    lcd_set_direction(DIR_YX_RLUD);
+#else
+    lcd_set_direction(DIR_YX_RLUD);
+#endif
 
     /*display on*/
     tft_write_command(DISPALY_ON);

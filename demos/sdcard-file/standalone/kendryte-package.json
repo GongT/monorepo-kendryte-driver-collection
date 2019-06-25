@@ -12,5 +12,8 @@
     "header": [
         "src"
     ],
-    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "definitions": {
+        "SPI_DEVICE_INDEX:raw": "SPI_DEVICE_0"
+    }
 }

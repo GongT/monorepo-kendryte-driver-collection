@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/wav-standalone-driver",
+    "name": "kendryte/sdcard-file-wav-standalone-driver",
     "version": "develop",
     "type": "library",
     "dependency": {

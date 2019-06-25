@@ -3,13 +3,20 @@
     "version": "develop",
     "type": "executable",
     "dependency": {
-        "kendryte/standalone-sdk": "develop"
+        "kendryte/standalone-sdk": "develop",
+        "kendryte/sdcard-standalone-driver": "develop",
+        "kendryte/sdcard-file-bmp-standalone-driver": "develop",
+        "kendryte/camera-standalone-driver": "develop",
+        "kendryte/lcd-nt35310-standalone-driver": "develop"
     },
     "source": [
         "src/*.c"
     ],
-	"header": [
+    "header": [
         "src"
     ],
-    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "definitions": {
+        "SPI_DEVICE_INDEX:raw": "SPI_DEVICE_1"
+    }
 }
