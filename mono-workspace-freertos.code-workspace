@@ -1,6 +1,6 @@
 {"folders":[
 {"name": "示例: flash", "path": "demos/flash//freertos"},
-{"name": "示例: i2s", "path": "demos/i2s//freertos"},
+{"name": "示例: i2s-through", "path": "demos/i2s-through//freertos"},
 {"name": "示例: pwm", "path": "demos/pwm//freertos"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//freertos"},
 {"name": "驱动: w25qxx", "path": "drivers/w25qxx//freertos"},

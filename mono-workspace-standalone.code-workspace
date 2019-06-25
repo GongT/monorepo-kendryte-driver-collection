@@ -1,12 +1,19 @@
 {"folders":[
+{"name": "示例: aes", "path": "demos/aes//standalone"},
+{"name": "示例: apu", "path": "demos/apu//standalone"},
 {"name": "示例: camera-screen", "path": "demos/camera-screen//standalone"},
 {"name": "示例: camera-sdcard", "path": "demos/camera-sdcard//standalone"},
 {"name": "示例: face-detect", "path": "demos/face-detect//standalone"},
+{"name": "示例: fft", "path": "demos/fft//standalone"},
 {"name": "示例: flash", "path": "demos/flash//standalone"},
 {"name": "示例: flash-dma", "path": "demos/flash-dma//standalone"},
 {"name": "示例: gpio-button", "path": "demos/gpio-button//standalone"},
 {"name": "示例: gpio-number", "path": "demos/gpio-number//standalone"},
-{"name": "示例: i2s", "path": "demos/i2s//standalone"},
+{"name": "示例: i2c-slave", "path": "demos/i2c-slave//standalone"},
+{"name": "示例: i2s-dma", "path": "demos/i2s-dma//standalone"},
+{"name": "示例: i2s-pcm", "path": "demos/i2s-pcm//standalone"},
+{"name": "示例: i2s-spectrum", "path": "demos/i2s-spectrum//standalone"},
+{"name": "示例: i2s-through", "path": "demos/i2s-through//standalone"},
 {"name": "示例: kpu", "path": "demos/kpu//standalone"},
 {"name": "示例: pwm", "path": "demos/pwm//standalone"},
 {"name": "示例: pwm-play-audio", "path": "demos/pwm-play-audio//standalone"},
@@ -33,11 +40,4 @@
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-],
-"settings": {
-    "files.associations": {
-        "rgb2bmp.h": "c",
-        "stdio.h": "c"
-    }
-}
-}
+]}

@@ -1,0 +1,11 @@
+{
+    "selectedChip": "Kendryte K210",
+    "funcPinMap": {
+        "I2S0_IN_D0": "A2",
+        "I2S0_WS": "A1",
+        "I2S0_SCLK": "B2",
+        "SPI0_SS3": "G11",
+        "SPI0_SCLK": "G12",
+        "GPIOHS2": "F11"
+    }
+}
