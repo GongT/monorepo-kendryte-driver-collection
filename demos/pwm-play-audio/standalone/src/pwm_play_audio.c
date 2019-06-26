@@ -38,11 +38,13 @@ static int timer_callback(void *ctx)
         int16_t v_i16data = *(((int16_t *)v_pwm_play_info->data) + (v_pwm_play_info->numchannels * (v_pwm_play_info->cur_cnt)++));
         uint16_t v_u16data = v_i16data + 32768;
         duty = v_u16data / 65536.0;
-    } else if(v_pwm_play_info->bitspersample == 8)
+    }
+    else if(v_pwm_play_info->bitspersample == 8)
     {
         uint8_t v_8data = *(v_pwm_play_info->data + (v_pwm_play_info->numchannels * (v_pwm_play_info->cur_cnt)++));
         duty = v_8data / 256.0;
-    } else /* 24bit */
+    }
+    else /* 24bit */
     {
         uint8_t v_data[4] = {0, 0, 0, 0};
         memcpy(v_data, v_pwm_play_info->data + (v_pwm_play_info->numchannels * (3 * (v_pwm_play_info->cur_cnt)++)), 3);
@@ -88,13 +90,15 @@ int pwm_play_wav(timer_device_number_t timer, timer_channel_number_t timer_chann
         {
             pwm_play_disable(timer, timer_channel, pwm, pwm_channel);
         }
-    } else if(mode == 2) /* return */
+    }
+    else if(mode == 2) /* return */
     {
         if(__sync_lock_test_and_set(&pwm_play_info.status, 1))
         {
             return DEVICE_BUSY;
         }
-    } else /* block */
+    }
+    else /* block */
     {
         while(__sync_lock_test_and_set(&pwm_play_info.status, 1))
             ;

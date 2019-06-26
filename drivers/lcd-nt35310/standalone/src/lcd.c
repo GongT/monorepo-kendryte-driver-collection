@@ -58,7 +58,8 @@ void lcd_set_direction(lcd_dir_t dir)
     {
         lcd_ctl.width = LCD_Y_MAX - 1;
         lcd_ctl.height = LCD_X_MAX - 1;
-    } else
+    }
+    else
     {
         lcd_ctl.width = LCD_X_MAX - 1;
         lcd_ctl.height = LCD_Y_MAX - 1;
@@ -177,6 +178,36 @@ void lcd_clear(uint16_t color)
 
     lcd_set_area(0, 0, lcd_ctl.width, lcd_ctl.height);
     tft_fill_data(&data, LCD_X_MAX * LCD_Y_MAX / 2);
+}
+
+void lcd_fill_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color)
+{
+    uint32_t data = color | (color << 16);
+
+    if(x1 > x2)
+    {
+        uint16_t tmp = x1;
+        x1 = x2;
+        x2 = tmp;
+    }
+    if(y1 > y2)
+    {
+        uint16_t tmp = y1;
+        y1 = y2;
+        y2 = tmp;
+    }
+    if(x1>LCD_X_MAX) x1=LCD_X_MAX;
+    if(x2>LCD_X_MAX) x2=LCD_X_MAX;
+    if(y1>LCD_Y_MAX) y1=LCD_Y_MAX;
+    if(y2>LCD_Y_MAX) y2=LCD_Y_MAX;
+
+    int buff_size =1+ (x2 - x1 + 1) * (y2 - y1 + 1) / 2;
+    uint32_t data_buf[buff_size] __attribute__((aligned(64)));
+    for(int index = 0; index < buff_size; index++)
+        data_buf[index] = data;
+
+    lcd_set_area(x1, y1, x2, y2);
+    tft_write_word(data_buf, buff_size, 0);
 }
 
 void lcd_draw_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,

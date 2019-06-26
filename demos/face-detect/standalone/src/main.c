@@ -95,7 +95,8 @@ static int dvp_irq(void *ctx)
         dvp_config_interrupt(DVP_CFG_START_INT_ENABLE | DVP_CFG_FINISH_INT_ENABLE, 0);
         dvp_clear_interrupt(DVP_STS_FRAME_FINISH);
         g_dvp_finish_flag = 1;
-    } else
+    }
+    else
     {
         dvp_start_convert();
         dvp_clear_interrupt(DVP_STS_FRAME_START);

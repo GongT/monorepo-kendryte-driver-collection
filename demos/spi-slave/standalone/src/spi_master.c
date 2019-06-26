@@ -124,13 +124,15 @@ int spi_master_transfer(uint8_t *data, uint32_t addr, uint32_t len, uint8_t mode
         if(len > 8)
             len = 8;
         cmd.len = len;
-    } else if(mode <= READ_DATA_BLOCK)
+    }
+    else if(mode <= READ_DATA_BLOCK)
     {
         if(len > 0x100000)
             len = 0x100000;
         addr &= 0xFFFFFFF0;
         cmd.len = len >> 4;
-    } else
+    }
+    else
         return -1;
     cmd.cmd = mode;
     cmd.addr = addr;

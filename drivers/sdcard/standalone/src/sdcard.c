@@ -458,7 +458,8 @@ uint8_t sd_read_sector(uint8_t *data_buff, uint32_t sector, uint32_t count)
     {
         flag = 0;
         sd_send_cmd(SD_CMD17, sector, 0);
-    } else
+    }
+    else
     {
         flag = 1;
         sd_send_cmd(SD_CMD18, sector, 0);
@@ -509,7 +510,8 @@ uint8_t sd_write_sector(uint8_t *data_buff, uint32_t sector, uint32_t count)
     {
         frame[1] = SD_START_DATA_SINGLE_BLOCK_WRITE;
         sd_send_cmd(SD_CMD24, sector, 0);
-    } else
+    }
+    else
     {
         frame[1] = SD_START_DATA_MULTIPLE_BLOCK_WRITE;
         sd_send_cmd(SD_ACMD23, count, 0);
@@ -554,7 +556,8 @@ uint8_t sd_read_sector_dma(uint8_t *data_buff, uint32_t sector, uint32_t count)
     {
         flag = 0;
         sd_send_cmd(SD_CMD17, sector, 0);
-    } else
+    }
+    else
     {
         flag = 1;
         sd_send_cmd(SD_CMD18, sector, 0);

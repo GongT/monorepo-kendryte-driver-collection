@@ -195,8 +195,8 @@ bool ws2812_send_data_spi(uint32_t spi_num, dmac_channel_number_t dmac_num, ws28
                     }
                 }
                 short_cnt = shortbit;
-
-            } else
+            }
+            else
             {
                 while(short_cnt--)
                 {
@@ -320,8 +320,8 @@ bool ws2812_send_data_i2s(i2s_device_number_t i2s_num, dmac_channel_number_t dma
                     }
                 }
                 short_cnt = shortbit;
-
-            } else
+            }
+            else
             {
                 while(short_cnt--)
                 {

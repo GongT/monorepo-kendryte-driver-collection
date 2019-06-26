@@ -89,7 +89,8 @@ int main(void)
     if((ret = f_stat(path, &v_fileinfo)) == FR_OK)
     {
         printf("%s length is %lld\n", path, v_fileinfo.fsize);
-    } else
+    }
+    else
     {
         printf("%s fstat err [%d]\n", path, ret);
     }
@@ -101,7 +102,8 @@ int main(void)
         if(ret != FR_OK)
         {
             printf("Read %s err[%d]\n", path, ret);
-        } else
+        }
+        else
         {
             printf("Read :> %s %d bytes lenth\n", v_buf, v_ret_len);
         }
@@ -112,7 +114,8 @@ int main(void)
     {
         printf("open file %s err[%d]\n", path, ret);
         return ret;
-    } else
+    }
+    else
     {
         printf("Open %s ok\n", path);
     }
@@ -127,7 +130,8 @@ int main(void)
     if(ret != FR_OK)
     {
         printf("Write %s err[%d]\n", path, ret);
-    } else
+    }
+    else
     {
         printf("Write %d bytes to %s ok\n", v_ret_len, path);
     }

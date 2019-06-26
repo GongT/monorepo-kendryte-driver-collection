@@ -185,7 +185,8 @@ static enum w25qxx_status_t w25qxx_page_program(uint32_t addr, uint8_t *data_buf
         *(((uint8_t *)cmd) + 2) = (uint8_t)(addr >> 8);
         *(((uint8_t *)cmd) + 3) = (uint8_t)(addr >> 16);
         w25qxx_send_data(spi_adapter, (uint8_t *)cmd, 4, data_buf, length);
-    } else
+    }
+    else
     {
         *(((uint8_t *)cmd) + 0) = PAGE_PROGRAM;
         *(((uint8_t *)cmd) + 1) = (uint8_t)(addr >> 16);

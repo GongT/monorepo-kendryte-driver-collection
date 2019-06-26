@@ -42,6 +42,12 @@
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
 ],
 "settings": {
-    "debug.openocd.port": 41999
+    "debug.openocd.port": 41999,
+    "files.associations": {
+        "math.h": "c",
+        "lcd.h": "c",
+        "string.h": "c",
+        "stdint.h": "c"
+    }
 }
 }

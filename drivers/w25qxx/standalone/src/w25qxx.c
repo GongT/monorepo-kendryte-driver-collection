@@ -279,7 +279,8 @@ w25qxx_status_t w25qxx_write_data(uint32_t addr, uint8_t *data_buf, uint32_t len
         if(write_len == w25qxx_FLASH_SECTOR_SIZE)
         {
             w25qxx_sector_program(sector_addr, data_buf);
-        } else
+        }
+        else
         {
             pread = swap_buf + sector_offset;
             pwrite = data_buf;

@@ -54,7 +54,8 @@ void lcd_set_direction(enum lcd_dir_t dir)
     {
         lcd_ctl.width = LCD_Y_MAX - 1;
         lcd_ctl.height = LCD_X_MAX - 1;
-    } else
+    }
+    else
     {
         lcd_ctl.width = LCD_X_MAX - 1;
         lcd_ctl.height = LCD_Y_MAX - 1;

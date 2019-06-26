@@ -107,7 +107,8 @@ enum errorcode_e wav_decode(struct wav_file_t *wav_file)
                 return FILE_END;
             return FILE_FAIL;
         }
-    } else if(wav_file->buff1_used == 0)
+    }
+    else if(wav_file->buff1_used == 0)
     {
         if(FR_OK != f_read(wav_file->fp, wav_file->buff1, wav_file->buff1_len, &(wav_file->buff1_read_len)))
             return FILE_FAIL;

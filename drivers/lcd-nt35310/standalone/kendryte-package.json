@@ -23,5 +23,6 @@
         "RST_GPIONUM:raw": "3",
         "SPI_CHANNEL:raw": "0",
         "SPI_SLAVE_SELECT:raw": "3"
-    }
+    },
+    "systemLibrary": []
 }
