@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <fpioa.h>
+#include <plic.h>
+#include <pwm.h>
 #include <stdio.h>
+#include <sysctl.h>
 #include <syslog.h>
 #include <timer.h>
-#include <pwm.h>
-#include <plic.h>
-#include <sysctl.h>
-#include <fpioa.h>
 #include "test_pcm.h"
 
-#define TIMER_NOR   0
-#define TIMER_CHN   0
-#define TIMER_PWM   1
+#define TIMER_NOR 0
+#define TIMER_CHN 0
+#define TIMER_PWM 1
 #define TIMER_PWM_CHN 0
 
 int timer_callback(void *ctx)
@@ -68,5 +68,4 @@ int main(void)
 
     while(1)
         continue;
-
 }

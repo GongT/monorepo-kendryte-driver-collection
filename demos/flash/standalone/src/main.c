@@ -24,7 +24,7 @@ uint8_t data_buf[TEST_NUMBER];
 void io_mux_init(uint8_t index)
 {
 
-    if (index == 0)
+    if(index == 0)
     {
         fpioa_set_function(30, FUNC_SPI0_SS0);
         fpioa_set_function(32, FUNC_SPI0_SCLK);
@@ -32,8 +32,7 @@ void io_mux_init(uint8_t index)
         fpioa_set_function(13, FUNC_SPI0_D1);
         fpioa_set_function(15, FUNC_SPI0_D2);
         fpioa_set_function(17, FUNC_SPI0_D3);
-    }
-    else if(index == 2)
+    } else if(index == 2)
     {
         fpioa_set_function(30, FUNC_SPI1_SS0);
         fpioa_set_function(32, FUNC_SPI1_SCLK);
@@ -58,30 +57,30 @@ int main(void)
 
     w25qxx_read_id(&manuf_id, &device_id);
     printf("manuf_id:0x%02x, device_id:0x%02x\n", manuf_id, device_id);
-    if ((manuf_id != 0xEF && manuf_id != 0xC8) || (device_id != 0x17 && device_id != 0x16))
+    if((manuf_id != 0xEF && manuf_id != 0xC8) || (device_id != 0x17 && device_id != 0x16))
     {
         printf("manuf_id:0x%02x, device_id:0x%02x\n", manuf_id, device_id);
         return 0;
     }
 
     /*write data*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = (uint8_t)(index);
     printf("erase sector\n");
     w25qxx_sector_erase(DATA_ADDRESS);
-    while (w25qxx_is_busy() == W25QXX_BUSY)
+    while(w25qxx_is_busy() == W25QXX_BUSY)
         ;
     printf("write data\n");
     w25qxx_write_data_direct(DATA_ADDRESS, data_buf, TEST_NUMBER);
 
     /* standard read test*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("standard read test start\n");
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_STANDARD);
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
     {
-        if (data_buf[index] != (uint8_t)(index))
+        if(data_buf[index] != (uint8_t)(index))
         {
             printf("standard read test error\n");
             return 0;
@@ -89,14 +88,14 @@ int main(void)
     }
 
     /*standard fast read test*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("standard fast read test start\n");
     /*w25qxx_read_data(0, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST);*/
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST);
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
     {
-        if (data_buf[index] != (uint8_t)index)
+        if(data_buf[index] != (uint8_t)index)
         {
             printf("standard fast read test error\n");
             return 0;
@@ -104,13 +103,13 @@ int main(void)
     }
 
     /*dual read test*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("dual read test start\n");
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_DUAL);
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
     {
-        if (data_buf[index] != (uint8_t)index)
+        if(data_buf[index] != (uint8_t)index)
         {
             printf("dual read test error\n");
             return 0;
@@ -118,13 +117,13 @@ int main(void)
     }
 
     /*quad read test*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("quad read test start\n");
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_QUAD);
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
     {
-        if (data_buf[index] != (uint8_t)(index))
+        if(data_buf[index] != (uint8_t)(index))
         {
             printf("quad read test error\n");
             return 0;
@@ -132,13 +131,13 @@ int main(void)
     }
 
     /*dual fast read test*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("dual fast read test start\n");
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_DUAL_FAST);
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
     {
-        if (data_buf[index] != (uint8_t)index)
+        if(data_buf[index] != (uint8_t)index)
         {
             printf("dual fast read test error\n");
             return 0;
@@ -146,13 +145,13 @@ int main(void)
     }
 
     /*quad fast read test*/
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("quad fast read test start\n");
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_QUAD_FAST);
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
     {
-        if (data_buf[index] != (uint8_t)(index))
+        if(data_buf[index] != (uint8_t)(index))
         {
             printf("quad fast read test error\n");
             return 0;
@@ -160,7 +159,7 @@ int main(void)
     }
 
     printf("spi%d master test ok\n", spi_index);
-    while (1)
+    while(1)
         ;
     return 0;
 }

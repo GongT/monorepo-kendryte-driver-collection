@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/i2s-freertos",
+    "name": "kendryte/i2s-through-freertos",
     "version": "develop",
     "type": "executable",
     "dependency": {

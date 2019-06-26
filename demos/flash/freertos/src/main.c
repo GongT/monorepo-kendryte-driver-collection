@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <stdio.h>
 #include <devices.h>
+#include <stdio.h>
 #include <task.h>
 #include "w25qxx.h"
 
@@ -28,9 +28,9 @@ void vTask1()
     int32_t index = 0;
     int32_t page_addr = TEST_START_ADDR;
 
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf_send[index] = (uint8_t)(index);
-    while (1)
+    while(1)
     {
         w25qxx_write_data(page_addr, data_buf_send, TEST_NUMBER);
         page_addr += TEST_NUMBER;
@@ -42,14 +42,14 @@ void vTask2()
 {
     int32_t index = 0;
     int32_t page_addr = TEST_START_ADDR;
-    for (index = 0; index < TEST_NUMBER; index++)
+    for(index = 0; index < TEST_NUMBER; index++)
         data_buf_recv[index] = 0;
-    while (1)
+    while(1)
     {
         w25qxx_read_data(page_addr, data_buf_recv, TEST_NUMBER);
-        for (index = 0; index < TEST_NUMBER; index++)
+        for(index = 0; index < TEST_NUMBER; index++)
         {
-            if (data_buf_recv[index] != (uint8_t)index)
+            if(data_buf_recv[index] != (uint8_t)index)
             {
                 printf("read : %d write : %d\n", data_buf_recv[index], index);
                 configASSERT(!" read err");
@@ -66,7 +66,7 @@ int main(void)
     spi3 = io_open("/dev/spi3");
     configASSERT(spi3);
     w25qxx_init(spi3);
- 
+
     xTaskCreate(vTask1, "vTask1", 20480, NULL, 3, NULL);
     xTaskCreate(vTask2, "vTask2", 20480, NULL, 2, NULL);
     while(1)

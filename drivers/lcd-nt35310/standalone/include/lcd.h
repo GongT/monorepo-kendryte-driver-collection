@@ -43,24 +43,26 @@
 #define USER_COLOR  0xAA55
 /* clang-format on */
 
-typedef enum _lcd_dir {
-  DIR_XY_RLUD = 0x00,
-  DIR_YX_RLUD = 0x20,
-  DIR_XY_LRUD = 0x40,
-  DIR_YX_LRUD = 0x60,
-  DIR_XY_RLDU = 0x80,
-  DIR_YX_RLDU = 0xA0,
-  DIR_XY_LRDU = 0xC0,
-  DIR_YX_LRDU = 0xE0,
-  DIR_XY_MASK = 0x20,
-  DIR_MASK = 0xE0,
+typedef enum _lcd_dir
+{
+    DIR_XY_RLUD = 0x00,
+    DIR_YX_RLUD = 0x20,
+    DIR_XY_LRUD = 0x40,
+    DIR_YX_LRUD = 0x60,
+    DIR_XY_RLDU = 0x80,
+    DIR_YX_RLDU = 0xA0,
+    DIR_XY_LRDU = 0xC0,
+    DIR_YX_LRDU = 0xE0,
+    DIR_XY_MASK = 0x20,
+    DIR_MASK = 0xE0,
 } lcd_dir_t;
 
-typedef struct _lcd_ctl {
-  uint8_t mode;
-  uint8_t dir;
-  uint16_t width;
-  uint16_t height;
+typedef struct _lcd_ctl
+{
+    uint8_t mode;
+    uint8_t dir;
+    uint16_t width;
+    uint16_t height;
 } lcd_ctl_t;
 
 void lcd_polling_enable(void);

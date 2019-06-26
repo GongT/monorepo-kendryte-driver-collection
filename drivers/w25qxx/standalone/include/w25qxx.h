@@ -111,4 +111,3 @@ w25qxx_status_t w25qxx_is_busy_dma(void);
 w25qxx_status_t w25qxx_enable_quad_mode_dma(void);
 
 #endif
-

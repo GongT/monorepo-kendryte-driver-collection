@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/spectrum-standalone",
+    "name": "kendryte/i2s-spectrum-standalone",
     "version": "develop",
     "type": "executable",
     "dependency": {

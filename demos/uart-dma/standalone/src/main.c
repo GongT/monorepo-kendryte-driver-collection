@@ -12,15 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <stdio.h>
 #include <fpioa.h>
-#include <string.h>
-#include <uart.h>
 #include <gpio.h>
+#include <stdio.h>
+#include <string.h>
 #include <sysctl.h>
+#include <uart.h>
 #include <unistd.h>
 
-#define RECV_LENTH  4
+#define RECV_LENTH 4
 
 #define CLOSLIGHT 0xAAAAAAAA
 #define OPENLIGHT 0x55555555
@@ -33,7 +33,7 @@ volatile uint32_t s_recv_cnt = 0;
 volatile uint32_t g_send_count = 0;
 uint8_t recv_buf[128];
 
-void uart_print(const char const * str)
+void uart_print(const char const *str)
 {
     uart_send_data(UART_NUM, str, strlen(str));
 }
@@ -83,9 +83,9 @@ int main()
     int rec_flag = 0;
     char cmd[8];
     int i = 0;
-    while (1)
+    while(1)
     {
-        uart_receive_data_dma(UART_NUM, DMAC_CHANNEL1, (uint8_t *)&recv, 1);    /*block wait for receive*/
+        uart_receive_data_dma(UART_NUM, DMAC_CHANNEL1, (uint8_t *)&recv, 1); /*block wait for receive*/
         switch(rec_flag)
         {
             case 0:
@@ -110,4 +110,3 @@ int main()
         }
     }
 }
-

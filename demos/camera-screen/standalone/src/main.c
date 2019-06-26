@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <stdio.h>
-#include <string.h>
+#include <camera.h>
 #include <dvp.h>
 #include <fpioa.h>
 #include <lcd.h>
 #include <plic.h>
+#include <stdio.h>
+#include <string.h>
 #include <sysctl.h>
 #include <uarths.h>
 #include <unistd.h>
-#include <camera.h>
 
 uint32_t g_lcd_gram0[38400] __attribute__((aligned(64)));
 uint32_t g_lcd_gram1[38400] __attribute__((aligned(64)));
@@ -29,17 +29,16 @@ uint32_t g_lcd_gram1[38400] __attribute__((aligned(64)));
 volatile uint8_t g_dvp_finish_flag;
 volatile uint8_t g_ram_mux;
 
-static int on_irq_dvp(void* ctx)
+static int on_irq_dvp(void *ctx)
 {
-    if (dvp_get_interrupt(DVP_STS_FRAME_FINISH))
+    if(dvp_get_interrupt(DVP_STS_FRAME_FINISH))
     {
         /* switch gram */
         dvp_set_display_addr(g_ram_mux ? (uint32_t)g_lcd_gram0 : (uint32_t)g_lcd_gram1);
 
         dvp_clear_interrupt(DVP_STS_FRAME_FINISH);
         g_dvp_finish_flag = 1;
-    }
-    else
+    } else
     {
         if(g_dvp_finish_flag == 0)
             dvp_start_convert();
@@ -95,10 +94,10 @@ int main(void)
     dvp_clear_interrupt(DVP_STS_FRAME_START | DVP_STS_FRAME_FINISH);
     dvp_config_interrupt(DVP_CFG_START_INT_ENABLE | DVP_CFG_FINISH_INT_ENABLE, 1);
 
-    while (1)
+    while(1)
     {
         /* ai cal finish*/
-        while (g_dvp_finish_flag == 0)
+        while(g_dvp_finish_flag == 0)
             ;
         g_dvp_finish_flag = 0;
         /* display pic*/

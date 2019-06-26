@@ -18,9 +18,9 @@
 #include <stdio.h>
 #include <sysctl.h>
 #include <uarths.h>
-#include "spi_slave.h"
-#include "spi_master.h"
 #include "board_config.h"
+#include "spi_master.h"
+#include "spi_slave.h"
 
 //#define MASTER_MODE
 #define PLL0_OUTPUT_FREQ 800000000UL

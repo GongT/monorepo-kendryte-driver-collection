@@ -27,7 +27,7 @@
 #define UART_NUM UART_DEVICE_3
 #define LED_IO 0
 
-void uart_print(const char const * str)
+void uart_print(const char const *str)
 {
     uart_send_data(UART_NUM, str, strlen(str));
 }

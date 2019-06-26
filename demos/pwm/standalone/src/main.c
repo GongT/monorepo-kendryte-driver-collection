@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <fpioa.h>
+#include <plic.h>
+#include <pwm.h>
 #include <stdio.h>
+#include <sysctl.h>
 #include <syslog.h>
 #include <timer.h>
-#include <pwm.h>
-#include <plic.h>
-#include <sysctl.h>
-#include <fpioa.h>
 
-#define TIMER_NOR   0
-#define TIMER_CHN   0
-#define TIMER_PWM   1
+#define TIMER_NOR 0
+#define TIMER_CHN 0
+#define TIMER_PWM 1
 #define TIMER_PWM_CHN 0
 
 int timer_callback(void *ctx)
@@ -32,13 +32,12 @@ int timer_callback(void *ctx)
 
     pwm_set_frequency(TIMER_PWM, TIMER_PWM_CHN, 200000, cnt);
 
-    flag ? (cnt -= 0.01): (cnt += 0.01);
+    flag ? (cnt -= 0.01) : (cnt += 0.01);
     if(cnt > 1.0)
     {
         cnt = 1.0;
         flag = 1;
-    }
-    else if (cnt < 0.0)
+    } else if(cnt < 0.0)
     {
         cnt = 0.0;
         flag = 0;
@@ -48,7 +47,8 @@ int timer_callback(void *ctx)
 
 int main(void)
 {
-    LOGI(__func__, "Kendryte "__DATE__ " " __TIME__);
+    LOGI(__func__, "Kendryte "__DATE__
+                   " " __TIME__);
     LOGI(__func__, "PWM test");
     /* Init Platform-Level Interrupt Controller(PLIC) */
     plic_init();

@@ -12,34 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <devices.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <devices.h>
 #include "w25qxx.h"
 
 uintptr_t spi_adapter;
 uintptr_t spi_stand;
 
-static enum w25qxx_status_t w25qxx_receive_data(uint8_t* cmd_buff, uint8_t cmd_len, uint8_t* rx_buff, uint32_t rx_len)
+static enum w25qxx_status_t w25qxx_receive_data(uint8_t *cmd_buff, uint8_t cmd_len, uint8_t *rx_buff, uint32_t rx_len)
 {
     spi_dev_transfer_sequential(spi_stand, (uint8_t *)cmd_buff, cmd_len, (uint8_t *)rx_buff, rx_len);
     return W25QXX_OK;
 }
 
-static enum w25qxx_status_t w25qxx_receive_data_enhanced(uint32_t* cmd_buff, uint8_t cmd_len, uint8_t* rx_buff, uint32_t rx_len)
+static enum w25qxx_status_t w25qxx_receive_data_enhanced(uint32_t *cmd_buff, uint8_t cmd_len, uint8_t *rx_buff, uint32_t rx_len)
 {
     memcpy(rx_buff, cmd_buff, cmd_len);
     io_read(spi_adapter, (uint8_t *)rx_buff, rx_len);
     return W25QXX_OK;
 }
 
-static enum w25qxx_status_t w25qxx_send_data(uintptr_t file, uint8_t* cmd_buff, uint8_t cmd_len, uint8_t* tx_buff, uint32_t tx_len)
+static enum w25qxx_status_t w25qxx_send_data(uintptr_t file, uint8_t *cmd_buff, uint8_t cmd_len, uint8_t *tx_buff, uint32_t tx_len)
 {
     configASSERT(cmd_len);
-    uint8_t* tmp_buf = malloc(cmd_len + tx_len);
+    uint8_t *tmp_buf = malloc(cmd_len + tx_len);
     memcpy(tmp_buf, cmd_buff, cmd_len);
-    if (tx_len)
+    if(tx_len)
         memcpy(tmp_buf + cmd_len, tx_buff, tx_len);
     io_write(file, (uint8_t *)tmp_buf, cmd_len + tx_len);
     free(tmp_buf);
@@ -54,7 +54,7 @@ static enum w25qxx_status_t w25qxx_write_enable(void)
     return W25QXX_OK;
 }
 
-static enum w25qxx_status_t w25qxx_read_status_reg1(uint8_t* reg_data)
+static enum w25qxx_status_t w25qxx_read_status_reg1(uint8_t *reg_data)
 {
     uint8_t cmd[1] = {READ_REG1};
     uint8_t data[1];
@@ -63,7 +63,7 @@ static enum w25qxx_status_t w25qxx_read_status_reg1(uint8_t* reg_data)
     *reg_data = data[0];
     return W25QXX_OK;
 }
-static enum w25qxx_status_t w25qxx_read_status_reg2(uint8_t* reg_data)
+static enum w25qxx_status_t w25qxx_read_status_reg2(uint8_t *reg_data)
 {
     uint8_t cmd[1] = {READ_REG2};
     uint8_t data[1];
@@ -86,7 +86,7 @@ static enum w25qxx_status_t w25qxx_enable_quad_mode(void)
     uint8_t reg_data;
 
     w25qxx_read_status_reg2(&reg_data);
-    if (!(reg_data & REG2_QUAL_MASK))
+    if(!(reg_data & REG2_QUAL_MASK))
     {
         reg_data |= REG2_QUAL_MASK;
         w25qxx_write_status_reg(0x00, reg_data);
@@ -99,7 +99,7 @@ static enum w25qxx_status_t w25qxx_is_busy(void)
     uint8_t status;
 
     w25qxx_read_status_reg1(&status);
-    if (status & REG1_BUSY_MASK)
+    if(status & REG1_BUSY_MASK)
         return W25QXX_BUSY;
     return W25QXX_OK;
 }
@@ -127,43 +127,43 @@ enum w25qxx_status_t w25qxx_read_id(uint8_t *manuf_id, uint8_t *device_id)
     return W25QXX_OK;
 }
 
-static enum w25qxx_status_t w25qxx_read_data_less_64kb(uint32_t addr, uint8_t* data_buf, uint32_t length)
+static enum w25qxx_status_t w25qxx_read_data_less_64kb(uint32_t addr, uint8_t *data_buf, uint32_t length)
 {
     uint32_t cmd[2];
 
-    switch (WORK_TRANS_MODE)
+    switch(WORK_TRANS_MODE)
     {
         case SPI_FF_DUAL:
-            *(((uint8_t*)cmd) + 0) = FAST_READ_DUAL_OUTPUT;
-            *(((uint8_t*)cmd) + 1) = (uint8_t)(addr >> 0);
-            *(((uint8_t*)cmd) + 2) = (uint8_t)(addr >> 8);
-            *(((uint8_t*)cmd) + 3) = (uint8_t)(addr >> 16);
+            *(((uint8_t *)cmd) + 0) = FAST_READ_DUAL_OUTPUT;
+            *(((uint8_t *)cmd) + 1) = (uint8_t)(addr >> 0);
+            *(((uint8_t *)cmd) + 2) = (uint8_t)(addr >> 8);
+            *(((uint8_t *)cmd) + 3) = (uint8_t)(addr >> 16);
             w25qxx_receive_data_enhanced(cmd, 4, data_buf, length);
             break;
         case SPI_FF_QUAD:
-            *(((uint8_t*)cmd) + 0) = FAST_READ_QUAL_OUTPUT;
-            *(((uint8_t*)cmd) + 1) = (uint8_t)(addr >> 0);
-            *(((uint8_t*)cmd) + 2) = (uint8_t)(addr >> 8);
-            *(((uint8_t*)cmd) + 3) = (uint8_t)(addr >> 16);
+            *(((uint8_t *)cmd) + 0) = FAST_READ_QUAL_OUTPUT;
+            *(((uint8_t *)cmd) + 1) = (uint8_t)(addr >> 0);
+            *(((uint8_t *)cmd) + 2) = (uint8_t)(addr >> 8);
+            *(((uint8_t *)cmd) + 3) = (uint8_t)(addr >> 16);
             w25qxx_receive_data_enhanced(cmd, 4, data_buf, length);
             break;
         case SPI_FF_STANDARD:
         default:
-            *(((uint8_t*)cmd) + 0) = READ_DATA;
-            *(((uint8_t*)cmd) + 1) = (uint8_t)(addr >> 16);
-            *(((uint8_t*)cmd) + 2) = (uint8_t)(addr >> 8);
-            *(((uint8_t*)cmd) + 3) = (uint8_t)(addr >> 0);
-            w25qxx_receive_data((uint8_t*)cmd, 4, data_buf, length);
+            *(((uint8_t *)cmd) + 0) = READ_DATA;
+            *(((uint8_t *)cmd) + 1) = (uint8_t)(addr >> 16);
+            *(((uint8_t *)cmd) + 2) = (uint8_t)(addr >> 8);
+            *(((uint8_t *)cmd) + 3) = (uint8_t)(addr >> 0);
+            w25qxx_receive_data((uint8_t *)cmd, 4, data_buf, length);
             break;
     }
     return W25QXX_OK;
 }
 
-enum w25qxx_status_t w25qxx_read_data(uint32_t addr, uint8_t* data_buf, uint32_t length)
+enum w25qxx_status_t w25qxx_read_data(uint32_t addr, uint8_t *data_buf, uint32_t length)
 {
     uint32_t len;
 
-    while (length)
+    while(length)
     {
         len = length >= 0x010000 ? 0x010000 : length;
         w25qxx_read_data_less_64kb(addr, data_buf, len);
@@ -174,36 +174,35 @@ enum w25qxx_status_t w25qxx_read_data(uint32_t addr, uint8_t* data_buf, uint32_t
     return W25QXX_OK;
 }
 
-static enum w25qxx_status_t w25qxx_page_program(uint32_t addr, uint8_t* data_buf, uint32_t length)
+static enum w25qxx_status_t w25qxx_page_program(uint32_t addr, uint8_t *data_buf, uint32_t length)
 {
     uint32_t cmd[2];
     w25qxx_write_enable();
-    if (WORK_TRANS_MODE == SPI_FF_QUAD)
+    if(WORK_TRANS_MODE == SPI_FF_QUAD)
     {
-        *(((uint8_t*)cmd) + 0) = QUAD_PAGE_PROGRAM;
-        *(((uint8_t*)cmd) + 1) = (uint8_t)(addr >> 0);
-        *(((uint8_t*)cmd) + 2) = (uint8_t)(addr >> 8);
-        *(((uint8_t*)cmd) + 3) = (uint8_t)(addr >> 16);
-        w25qxx_send_data(spi_adapter, (uint8_t*)cmd, 4, data_buf, length);
-    }
-    else
+        *(((uint8_t *)cmd) + 0) = QUAD_PAGE_PROGRAM;
+        *(((uint8_t *)cmd) + 1) = (uint8_t)(addr >> 0);
+        *(((uint8_t *)cmd) + 2) = (uint8_t)(addr >> 8);
+        *(((uint8_t *)cmd) + 3) = (uint8_t)(addr >> 16);
+        w25qxx_send_data(spi_adapter, (uint8_t *)cmd, 4, data_buf, length);
+    } else
     {
-        *(((uint8_t*)cmd) + 0) = PAGE_PROGRAM;
-        *(((uint8_t*)cmd) + 1) = (uint8_t)(addr >> 16);
-        *(((uint8_t*)cmd) + 2) = (uint8_t)(addr >> 8);
-        *(((uint8_t*)cmd) + 3) = (uint8_t)(addr >> 0);
-        w25qxx_send_data(spi_stand, (uint8_t*)cmd, 4, data_buf, length);
+        *(((uint8_t *)cmd) + 0) = PAGE_PROGRAM;
+        *(((uint8_t *)cmd) + 1) = (uint8_t)(addr >> 16);
+        *(((uint8_t *)cmd) + 2) = (uint8_t)(addr >> 8);
+        *(((uint8_t *)cmd) + 3) = (uint8_t)(addr >> 0);
+        w25qxx_send_data(spi_stand, (uint8_t *)cmd, 4, data_buf, length);
     }
-    while (w25qxx_is_busy() == W25QXX_BUSY)
+    while(w25qxx_is_busy() == W25QXX_BUSY)
         ;
     return W25QXX_OK;
 }
 
-static enum w25qxx_status_t w25qxx_sector_program(uint32_t addr, uint8_t* data_buf)
+static enum w25qxx_status_t w25qxx_sector_program(uint32_t addr, uint8_t *data_buf)
 {
     uint8_t index;
 
-    for (index = 0; index < w25qxx_FLASH_PAGE_NUM_PER_SECTOR; index++)
+    for(index = 0; index < w25qxx_FLASH_PAGE_NUM_PER_SECTOR; index++)
     {
         w25qxx_page_program(addr, data_buf, w25qxx_FLASH_PAGE_SIZE);
         addr += w25qxx_FLASH_PAGE_SIZE;
@@ -212,13 +211,13 @@ static enum w25qxx_status_t w25qxx_sector_program(uint32_t addr, uint8_t* data_b
     return W25QXX_OK;
 }
 
-enum w25qxx_status_t w25qxx_write_data(uint32_t addr, uint8_t* data_buf, uint32_t length)
+enum w25qxx_status_t w25qxx_write_data(uint32_t addr, uint8_t *data_buf, uint32_t length)
 {
     uint32_t sector_addr, sector_offset, sector_remain, write_len, index;
     uint8_t swap_buf[w25qxx_FLASH_SECTOR_SIZE];
     uint8_t *pread, *pwrite;
 
-    while (length)
+    while(length)
     {
         sector_addr = addr & (~(w25qxx_FLASH_SECTOR_SIZE - 1));
         sector_offset = addr & (w25qxx_FLASH_SECTOR_SIZE - 1);
@@ -227,25 +226,25 @@ enum w25qxx_status_t w25qxx_write_data(uint32_t addr, uint8_t* data_buf, uint32_
         w25qxx_read_data(sector_addr, swap_buf, w25qxx_FLASH_SECTOR_SIZE);
         pread = swap_buf + sector_offset;
         pwrite = data_buf;
-        for (index = 0; index < write_len; index++)
+        for(index = 0; index < write_len; index++)
         {
-            if ((*pwrite) != ((*pwrite) & (*pread)))
+            if((*pwrite) != ((*pwrite) & (*pread)))
             {
                 w25qxx_sector_erase(sector_addr);
-                while (w25qxx_is_busy() == W25QXX_BUSY)
+                while(w25qxx_is_busy() == W25QXX_BUSY)
                     ;
                 break;
             }
             pwrite++;
             pread++;
         }
-        if (write_len == w25qxx_FLASH_SECTOR_SIZE)
+        if(write_len == w25qxx_FLASH_SECTOR_SIZE)
             w25qxx_sector_program(sector_addr, data_buf);
         else
         {
             pread = swap_buf + sector_offset;
             pwrite = data_buf;
-            for (index = 0; index < write_len; index++)
+            for(index = 0; index < write_len; index++)
                 *pread++ = *pwrite++;
             w25qxx_sector_program(sector_addr, swap_buf);
         }
@@ -262,12 +261,12 @@ enum w25qxx_status_t w25qxx_init(uintptr_t spi_in)
     spi_stand = spi_get_device(spi_in, SPI_MODE_0, SPI_FF_STANDARD, CHIP_SELECT, FRAME_LENGTH);
     spi_dev_set_clock_rate(spi_stand, 800000);
     w25qxx_read_id(&manuf_id, &device_id);
-    if ((manuf_id != 0xEF && manuf_id != 0xC8) || (device_id != 0x17 && device_id != 0x16))
+    if((manuf_id != 0xEF && manuf_id != 0xC8) || (device_id != 0x17 && device_id != 0x16))
     {
         printf("manuf_id:0x%02x, device_id:0x%02x\n", manuf_id, device_id);
     }
     printf("manuf_id:0x%02x, device_id:0x%02x\n", manuf_id, device_id);
-    switch (WORK_TRANS_MODE)
+    switch(WORK_TRANS_MODE)
     {
         case SPI_FF_DUAL:
             spi_adapter = spi_get_device(spi_in, SPI_MODE_0, SPI_FF_DUAL, CHIP_SELECT, FRAME_LENGTH);
@@ -285,4 +284,3 @@ enum w25qxx_status_t w25qxx_init(uintptr_t spi_in)
     }
     return W25QXX_OK;
 }
-

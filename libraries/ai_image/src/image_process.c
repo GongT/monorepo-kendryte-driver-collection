@@ -19,7 +19,7 @@
 int image_init(image_t *image)
 {
     image->addr = malloc(image->width * image->height * image->pixel);
-    if (image->addr == NULL)
+    if(image->addr == NULL)
         return -1;
     return 0;
 }

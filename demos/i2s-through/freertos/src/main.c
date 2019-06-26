@@ -17,13 +17,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "project_cfg.h"
 #include "i2s_play_pcm.h"
+#include "project_cfg.h"
 
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
 handle_t i2s0;
-const audio_format_t audio = { AUDIO_FMT_PCM, 16, 44100, 2 };
+const audio_format_t audio = {AUDIO_FMT_PCM, 16, 44100, 2};
 
 void init_i2s(void)
 {
@@ -43,11 +43,11 @@ int main(void)
     i2s0 = io_open("/dev/i2s2");
     configASSERT(i2s0);
     init_i2s();
-    while (1)
+    while(1)
     {
         size_t offset = 0;
         size_t reset_frames = total_frames;
-        while (reset_frames)
+        while(reset_frames)
         {
             size_t frames;
             i2s_get_buffer(i2s0, &buffer, &frames);

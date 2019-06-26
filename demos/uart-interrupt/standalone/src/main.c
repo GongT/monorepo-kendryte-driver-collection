@@ -12,14 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <stdio.h>
 #include <fpioa.h>
-#include <string.h>
-#include <uart.h>
 #include <gpio.h>
+#include <stdio.h>
+#include <string.h>
 #include <sysctl.h>
+#include <uart.h>
 
-#define CMD_LENTH  4
+#define CMD_LENTH 4
 
 #define CLOSLIGHT 0xAAAAAAAA
 #define OPENLIGHT 0x55555555
@@ -27,7 +27,7 @@
 #define UART_NUM UART_DEVICE_3
 #define LED_IO 0
 
-void uart_print(const char const * str)
+void uart_print(const char const *str)
 {
     uart_send_data(UART_NUM, str, strlen(str));
 }
@@ -64,7 +64,7 @@ int on_uart_send(void *ctx)
     uint8_t v_uart = *((uint32_t *)ctx) + 1 + 0x30;
     uart_irq_unregister(UART_NUM, UART_SEND);
     uart_print("Send ok Uart\n");
-    uart_send_data(UART_NUM, (char *)&v_uart,1);
+    uart_send_data(UART_NUM, (char *)&v_uart, 1);
     return 0;
 }
 
@@ -74,21 +74,19 @@ volatile uint8_t g_cmd_cnt = 0;
 int on_uart_recv(void *ctx)
 {
     char v_buf[8];
-    int ret =  uart_receive_data(UART_NUM, v_buf, 8);
+    int ret = uart_receive_data(UART_NUM, v_buf, 8);
     for(uint32_t i = 0; i < ret; i++)
     {
         if(v_buf[i] == 0x55 && (recv_flag == 0 || recv_flag == 1))
         {
             recv_flag = 1;
             continue;
-        }
-        else if(v_buf[i] == 0xAA && recv_flag == 1)
+        } else if(v_buf[i] == 0xAA && recv_flag == 1)
         {
             recv_flag = 2;
             g_cmd_cnt = 0;
             continue;
-        }
-        else if(recv_flag == 2 && g_cmd_cnt < CMD_LENTH)
+        } else if(recv_flag == 2 && g_cmd_cnt < CMD_LENTH)
         {
             g_cmd[g_cmd_cnt++] = v_buf[i];
             if(g_cmd_cnt >= CMD_LENTH)
@@ -97,8 +95,7 @@ int on_uart_recv(void *ctx)
                 recv_flag = 0;
             }
             continue;
-        }
-        else
+        } else
         {
             recv_flag = 0;
         }
@@ -127,6 +124,6 @@ int main()
     char *hel = {"hello world!\n"};
     uart_send_data(UART_NUM, hel, strlen(hel));
 
-    while(1);
+    while(1)
+        ;
 }
-

@@ -79,8 +79,7 @@ enum w25qxx_status_t
 };
 
 enum w25qxx_status_t w25qxx_init(uintptr_t spi_in);
-enum w25qxx_status_t w25qxx_write_data(uint32_t addr, uint8_t* data_buf, uint32_t length);
-enum w25qxx_status_t w25qxx_read_data(uint32_t addr, uint8_t* data_buf, uint32_t length);
+enum w25qxx_status_t w25qxx_write_data(uint32_t addr, uint8_t *data_buf, uint32_t length);
+enum w25qxx_status_t w25qxx_read_data(uint32_t addr, uint8_t *data_buf, uint32_t length);
 
 #endif
-

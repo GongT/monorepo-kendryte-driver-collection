@@ -12,22 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "spi_master.h"
 #include "fpioa.h"
 #include "gpiohs.h"
+#include "spi_master.h"
 
-#define WAIT_TIMEOUT            0xFFFFFF
+#define WAIT_TIMEOUT 0xFFFFFF
 
-#define SPI_MASTER_INT_PIN      28
-#define SPI_MASTER_INT_IO       6
-#define SPI_MASTER_CS_PIN       25
-#define SPI_MASTER_CS_IO        7
-#define SPI_MASTER_CLK_PIN      26
-#define SPI_MASTER_MOSI_PIN     27
-#define SPI_MASTER_MISO_PIN     27
+#define SPI_MASTER_INT_PIN 28
+#define SPI_MASTER_INT_IO 6
+#define SPI_MASTER_CS_PIN 25
+#define SPI_MASTER_CS_IO 7
+#define SPI_MASTER_CLK_PIN 26
+#define SPI_MASTER_MOSI_PIN 27
+#define SPI_MASTER_MISO_PIN 27
 
-#define SPI_MASTER_CS_LOW()    gpiohs_set_pin(SPI_MASTER_CS_IO, GPIO_PV_LOW)
-#define SPI_MASTER_CS_HIGH()   gpiohs_set_pin(SPI_MASTER_CS_IO, GPIO_PV_HIGH)
+#define SPI_MASTER_CS_LOW() gpiohs_set_pin(SPI_MASTER_CS_IO, GPIO_PV_LOW)
+#define SPI_MASTER_CS_HIGH() gpiohs_set_pin(SPI_MASTER_CS_IO, GPIO_PV_HIGH)
 
 static volatile uint8_t spi_slave_ready;
 
@@ -63,7 +63,7 @@ static int spi_receive_data(uint8_t *data, uint32_t len)
     fpioa_set_function(SPI_MASTER_MISO_PIN, FUNC_SPI0_D1);
     SPI_MASTER_CS_LOW();
 
-    spi_receive_data_standard(0, 0,  NULL, 0, (uint8_t *)data, len);
+    spi_receive_data_standard(0, 0, NULL, 0, (uint8_t *)data, len);
 
     SPI_MASTER_CS_HIGH();
     fpioa_set_function(SPI_MASTER_MOSI_PIN, FUNC_SPI0_D0);
@@ -84,12 +84,12 @@ static int spi_master_send_cmd(spi_slave_command_t *cmd)
 {
     uint8_t data[8];
 
-    for (uint32_t i = 0; i < WAIT_TIMEOUT; i++)
+    for(uint32_t i = 0; i < WAIT_TIMEOUT; i++)
     {
-        if (gpiohs_get_pin(SPI_MASTER_INT_IO) == 1)
+        if(gpiohs_get_pin(SPI_MASTER_INT_IO) == 1)
             break;
     }
-    if (gpiohs_get_pin(SPI_MASTER_INT_IO) == 0)
+    if(gpiohs_get_pin(SPI_MASTER_INT_IO) == 0)
         return -1;
 
     data[0] = cmd->cmd;
@@ -100,16 +100,16 @@ static int spi_master_send_cmd(spi_slave_command_t *cmd)
     data[5] = cmd->len;
     data[6] = cmd->len >> 8;
     data[7] = 0;
-    for (uint32_t i = 0; i < 7; i++)
+    for(uint32_t i = 0; i < 7; i++)
         data[7] += data[i];
     spi_slave_ready = 0;
     spi_send_data(data, 8);
-    for (uint32_t i = 0; i < WAIT_TIMEOUT; i++)
+    for(uint32_t i = 0; i < WAIT_TIMEOUT; i++)
     {
-        if (spi_slave_ready != 0)
+        if(spi_slave_ready != 0)
             break;
     }
-    if (spi_slave_ready)
+    if(spi_slave_ready)
         return 0;
     else
         return -2;
@@ -119,26 +119,24 @@ int spi_master_transfer(uint8_t *data, uint32_t addr, uint32_t len, uint8_t mode
 {
     spi_slave_command_t cmd;
 
-    if (mode <= READ_DATA_BYTE)
+    if(mode <= READ_DATA_BYTE)
     {
-        if (len > 8)
+        if(len > 8)
             len = 8;
         cmd.len = len;
-    }
-    else if (mode <= READ_DATA_BLOCK)
+    } else if(mode <= READ_DATA_BLOCK)
     {
-        if (len > 0x100000)
+        if(len > 0x100000)
             len = 0x100000;
         addr &= 0xFFFFFFF0;
         cmd.len = len >> 4;
-    }
-    else
+    } else
         return -1;
     cmd.cmd = mode;
     cmd.addr = addr;
-    if (spi_master_send_cmd(&cmd) != 0)
+    if(spi_master_send_cmd(&cmd) != 0)
         return -2;
-    if (mode & 0x01)
+    if(mode & 0x01)
         spi_receive_data(data, len);
     else
         spi_send_data(data, len);

@@ -14,9 +14,9 @@
  */
 #include <string.h>
 #include <sys/unistd.h>
-#include "lcd.h"
 #include "font.h"
 #include "jlt32009a.h"
+#include "lcd.h"
 
 typedef struct
 {
@@ -34,10 +34,10 @@ void lcd_init(void)
     tft_hard_init();
     // soft reset
     tft_write_command(SOFTWARE_RESET);
-    usleep(100*1000);
+    usleep(100 * 1000);
     // exit sleep
     tft_write_command(SLEEP_OFF);
-    usleep(100*1000);
+    usleep(100 * 1000);
     // pixel format
     tft_write_command(PIXEL_FORMAT_SET);
     data = 0x55;
@@ -50,19 +50,18 @@ void lcd_set_direction(enum lcd_dir_t dir)
 {
     dir |= 0x08;
     lcd_ctl.dir = dir;
-    if (dir & DIR_XY_MASK)
+    if(dir & DIR_XY_MASK)
     {
         lcd_ctl.width = LCD_Y_MAX - 1;
         lcd_ctl.height = LCD_X_MAX - 1;
-    }
-    else
+    } else
     {
         lcd_ctl.width = LCD_X_MAX - 1;
         lcd_ctl.height = LCD_Y_MAX - 1;
     }
 
     tft_write_command(MEMORY_ACCESS_CTL);
-    tft_write_byte((uint8_t*)&dir, 1);
+    tft_write_byte((uint8_t *)&dir, 1);
 }
 
 void lcd_set_area(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
@@ -94,12 +93,12 @@ void lcd_draw_char(uint16_t x, uint16_t y, char c, uint16_t color)
 {
     uint8_t i, j, data;
 
-    for (i = 0; i < 16; i++)
+    for(i = 0; i < 16; i++)
     {
         data = ascii0816[c * 16 + i];
-        for (j = 0; j < 8; j++)
+        for(j = 0; j < 8; j++)
         {
-            if (data & 0x80)
+            if(data & 0x80)
                 lcd_draw_point(x + j, y, color);
             data <<= 1;
         }
@@ -107,9 +106,9 @@ void lcd_draw_char(uint16_t x, uint16_t y, char c, uint16_t color)
     }
 }
 
-void lcd_draw_string(uint16_t x, uint16_t y, char* str, uint16_t color)
+void lcd_draw_string(uint16_t x, uint16_t y, char *str, uint16_t color)
 {
-    while (*str)
+    while(*str)
     {
         lcd_draw_char(x, y, *str, color);
         str++;
@@ -117,39 +116,39 @@ void lcd_draw_string(uint16_t x, uint16_t y, char* str, uint16_t color)
     }
 }
 
-void ram_draw_string(char* str, uint32_t* ptr, uint16_t font_color, uint16_t bg_color)
+void ram_draw_string(char *str, uint32_t *ptr, uint16_t font_color, uint16_t bg_color)
 {
     uint8_t i, j, data, *pdata;
     uint16_t width;
-    uint32_t* pixel;
+    uint32_t *pixel;
 
     width = 4 * strlen(str);
-    while (*str)
+    while(*str)
     {
-        pdata = (uint8_t*)&ascii0816[(*str) * 16];
-        for (i = 0; i < 16; i++)
+        pdata = (uint8_t *)&ascii0816[(*str) * 16];
+        for(i = 0; i < 16; i++)
         {
             data = *pdata++;
             pixel = ptr + i * width;
-            for (j = 0; j < 4; j++)
+            for(j = 0; j < 4; j++)
             {
-                switch (data >> 6)
+                switch(data >> 6)
                 {
-                case 0:
-                    *pixel = ((uint32_t)bg_color << 16) | bg_color;
-                    break;
-                case 1:
-                    *pixel = ((uint32_t)bg_color << 16) | font_color;
-                    break;
-                case 2:
-                    *pixel = ((uint32_t)font_color << 16) | bg_color;
-                    break;
-                case 3:
-                    *pixel = ((uint32_t)font_color << 16) | font_color;
-                    break;
-                default:
-                    *pixel = 0;
-                    break;
+                    case 0:
+                        *pixel = ((uint32_t)bg_color << 16) | bg_color;
+                        break;
+                    case 1:
+                        *pixel = ((uint32_t)bg_color << 16) | font_color;
+                        break;
+                    case 2:
+                        *pixel = ((uint32_t)font_color << 16) | bg_color;
+                        break;
+                    case 3:
+                        *pixel = ((uint32_t)font_color << 16) | font_color;
+                        break;
+                    default:
+                        *pixel = 0;
+                        break;
                 }
                 data <<= 2;
                 pixel++;
@@ -171,12 +170,12 @@ void lcd_clear(uint16_t color)
 void lcd_draw_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t width, uint16_t color)
 {
     uint32_t data_buf[640];
-    uint32_t* p = data_buf;
+    uint32_t *p = data_buf;
     uint32_t data = color;
     uint32_t index;
 
     data = (data << 16) | data;
-    for (index = 0; index < 160 * width; index++)
+    for(index = 0; index < 160 * width; index++)
         *p++ = data;
 
     lcd_set_area(x1, y1, x2, y1 + width - 1);
@@ -189,7 +188,7 @@ void lcd_draw_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint
     tft_write_word(data_buf, ((y2 - y1 + 1) * width + 1) / 2);
 }
 
-void lcd_draw_picture(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint32_t* ptr)
+void lcd_draw_picture(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint32_t *ptr)
 {
     lcd_set_area(x1, y1, x1 + width - 1, y1 + height - 1);
     tft_write_word(ptr, width * height / 2);

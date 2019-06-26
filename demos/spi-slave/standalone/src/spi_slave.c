@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "spi_slave.h"
 #include "fpioa.h"
 #include "gpiohs.h"
+#include "spi_slave.h"
 #include "stdio.h"
 
-#define SPI_SLAVE_INT_PIN       18
-#define SPI_SLAVE_INT_IO        4
-#define SPI_SLAVE_READY_PIN     22
-#define SPI_SLAVE_READY_IO      5
-#define SPI_SLAVE_CS_PIN        19
-#define SPI_SLAVE_CLK_PIN       20
-#define SPI_SLAVE_MOSI_PIN      21
-#define SPI_SLAVE_MISO_PIN      21
+#define SPI_SLAVE_INT_PIN 18
+#define SPI_SLAVE_INT_IO 4
+#define SPI_SLAVE_READY_PIN 22
+#define SPI_SLAVE_READY_IO 5
+#define SPI_SLAVE_CS_PIN 19
+#define SPI_SLAVE_CLK_PIN 20
+#define SPI_SLAVE_MOSI_PIN 21
+#define SPI_SLAVE_MISO_PIN 21
 
 int spi_slave_receive_hook(void *data)
 {
@@ -43,4 +43,3 @@ int spi_slave_init(uint8_t *data, uint32_t len)
 
     return 0;
 }
-

@@ -26,7 +26,6 @@ typedef struct
     uint16_t format;
 } image_t;
 
-
 int image_init(image_t *image);
 void image_deinit(image_t *image);
 

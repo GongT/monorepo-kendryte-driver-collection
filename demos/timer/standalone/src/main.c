@@ -12,20 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <fpioa.h>
+#include <plic.h>
+#include <pwm.h>
 #include <stdio.h>
+#include <sysctl.h>
 #include <syslog.h>
 #include <timer.h>
-#include <pwm.h>
-#include <plic.h>
-#include <sysctl.h>
-#include <fpioa.h>
 
 static int ctx_table[TIMER_DEVICE_MAX * TIMER_CHANNEL_MAX];
 
 /* Must use volatile variable */
 volatile static int irq_count;
 
-int timer_callback(void *ctx) {
+int timer_callback(void *ctx)
+{
     int number = *(int *)ctx;
 
     irq_count++;
@@ -36,7 +37,8 @@ int timer_callback(void *ctx) {
 
 int main(void)
 {
-    LOGI(__func__, "Kendryte "__DATE__ " " __TIME__);
+    LOGI(__func__, "Kendryte "__DATE__
+                   " " __TIME__);
     LOGI(__func__, "Timer test");
 
     /* Init context table */
@@ -53,10 +55,12 @@ int main(void)
     /* Enable global interrupt for machine mode of RISC-V */
     sysctl_enable_irq();
 
-    for(size_t j = 0; j < TIMER_DEVICE_MAX; j++) {
+    for(size_t j = 0; j < TIMER_DEVICE_MAX; j++)
+    {
         /* For every timer devices , Init timer */
         timer_init(j);
-        for(size_t i = 0; i < TIMER_CHANNEL_MAX; i++) {
+        for(size_t i = 0; i < TIMER_CHANNEL_MAX; i++)
+        {
             /* Set timer interval to 500ms */
             timer_set_interval(j, i, 500000000);
             /* Set timer callback function with single shot method */
@@ -67,7 +71,7 @@ int main(void)
         }
     }
 
-    while (irq_count < 12)
+    while(irq_count < 12)
         continue;
 
     LOGI("[PASS]", "Timer single shot test OK");
@@ -75,10 +79,12 @@ int main(void)
     /* Clear IRQ count */
     irq_count = 0;
 
-    for(size_t j = 0; j < TIMER_DEVICE_MAX; j++) {
+    for(size_t j = 0; j < TIMER_DEVICE_MAX; j++)
+    {
         /* For every timer devices , Init timer */
         timer_init(j);
-        for(size_t i = 0; i < TIMER_CHANNEL_MAX; i++) {
+        for(size_t i = 0; i < TIMER_CHANNEL_MAX; i++)
+        {
             /* Set timer interval to 200ms */
             timer_set_interval(j, i, 200000000);
             /* Set timer callback function with repeat method */
@@ -89,12 +95,14 @@ int main(void)
         }
     }
 
-    while (irq_count < 50)
+    while(irq_count < 50)
         continue;
 
-    for(size_t j = 0; j < TIMER_DEVICE_MAX; j++) {
+    for(size_t j = 0; j < TIMER_DEVICE_MAX; j++)
+    {
         /* For every timer devices */
-        for(size_t i = 0; i < TIMER_CHANNEL_MAX; i++) {
+        for(size_t i = 0; i < TIMER_CHANNEL_MAX; i++)
+        {
             /* Disable timer */
             timer_set_enable(j, i, 0);
             /* Deregister every channel timer interrupt */

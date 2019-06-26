@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <stdio.h>
 #include <fpioa.h>
-#include <string.h>
-#include <uart.h>
 #include <gpio.h>
-#include <sysctl.h>
-#include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sysctl.h>
+#include <uart.h>
+#include <unistd.h>
 
-#define CMD_LENTH  4
+#define CMD_LENTH 4
 
 #define CLOSLIGHT 0xAAAAAAAA
 #define OPENLIGHT 0x55555555
@@ -30,13 +30,13 @@
 #define LED_IO 0
 
 uint32_t recv_buf[48];
-#define RECV_DMA_LENTH  6
+#define RECV_DMA_LENTH 6
 
 volatile uint32_t recv_flag = 0;
 char g_cmd[4];
 volatile uint8_t g_cmd_cnt = 0;
 
-void uart_print(const char const * str)
+void uart_print(const char const *str)
 {
     uart_send_data(UART_NUM, str, strlen(str));
 }
@@ -82,16 +82,14 @@ int uart_recv_done(void *ctx)
     if(v_dest >= recv_buf + 48)
         v_dest = recv_buf;
 
-    uart_data_t data = (uart_data_t)
-    {
+    uart_data_t data = (uart_data_t){
         .rx_channel = DMAC_CHANNEL1,
         .rx_buf = v_dest,
         .rx_len = RECV_DMA_LENTH,
         .transfer_mode = UART_RECEIVE,
     };
 
-    plic_interrupt_t irq = (plic_interrupt_t)
-    {
+    plic_interrupt_t irq = (plic_interrupt_t){
         .callback = uart_recv_done,
         .ctx = v_dest,
         .priority = 2,
@@ -105,14 +103,12 @@ int uart_recv_done(void *ctx)
         {
             recv_flag = 1;
             continue;
-        }
-        else if(v_buf[i] == 0xAA && recv_flag == 1)
+        } else if(v_buf[i] == 0xAA && recv_flag == 1)
         {
             recv_flag = 2;
             g_cmd_cnt = 0;
             continue;
-        }
-        else if(recv_flag == 2 && g_cmd_cnt < CMD_LENTH)
+        } else if(recv_flag == 2 && g_cmd_cnt < CMD_LENTH)
         {
             g_cmd[g_cmd_cnt++] = v_buf[i];
             if(g_cmd_cnt >= CMD_LENTH)
@@ -121,8 +117,7 @@ int uart_recv_done(void *ctx)
                 recv_flag = 0;
             }
             continue;
-        }
-        else
+        } else
         {
             recv_flag = 0;
         }
@@ -151,16 +146,14 @@ int main(void)
         v_tx_buf[i] = hel[i];
     }
 
-    uart_data_t data = (uart_data_t)
-    {
+    uart_data_t data = (uart_data_t){
         .tx_channel = DMAC_CHANNEL0,
         .tx_buf = v_tx_buf,
         .tx_len = strlen(hel),
         .transfer_mode = UART_SEND,
     };
 
-    plic_interrupt_t irq = (plic_interrupt_t)
-    {
+    plic_interrupt_t irq = (plic_interrupt_t){
         .callback = uart_send_done,
         .ctx = NULL,
         .priority = 1,
@@ -168,16 +161,14 @@ int main(void)
 
     uart_handle_data_dma(UART_NUM, data, &irq);
 
-    uart_data_t v_rx_data = (uart_data_t)
-    {
+    uart_data_t v_rx_data = (uart_data_t){
         .rx_channel = DMAC_CHANNEL1,
         .rx_buf = recv_buf,
         .rx_len = RECV_DMA_LENTH,
         .transfer_mode = UART_RECEIVE,
     };
 
-    plic_interrupt_t v_rx_irq = (plic_interrupt_t)
-    {
+    plic_interrupt_t v_rx_irq = (plic_interrupt_t){
         .callback = uart_recv_done,
         .ctx = recv_buf,
         .priority = 2,
@@ -190,4 +181,3 @@ int main(void)
         g_uart_send_flag = 1;
     }
 }
-

@@ -29,20 +29,17 @@
 #define SPI(x) _SPI(SPI_CHANNEL, x)
 
 const fpioa_cfg_t g_fpioa_cfg =
-{
-    .version = PIN_CFG_VERSION,
-    .functions_count = 3,
-    .functions =
     {
-        {DCX_IO, FUNC_GPIOHS0 + DCX_GPIONUM},
-        {SPI_SS_IO, SPI_SS},
-        {SPI_SCLK_IO, SPI(SCLK)}
-    }
-};
+        .version = PIN_CFG_VERSION,
+        .functions_count = 3,
+        .functions =
+            {
+                {DCX_IO, FUNC_GPIOHS0 + DCX_GPIONUM},
+                {SPI_SS_IO, SPI_SS},
+                {SPI_SCLK_IO, SPI(SCLK)}}};
 const pin_cfg_t g_pin_cfg =
-{
-    .version = PIN_CFG_VERSION,
-    .set_spi0_dvp_data = 1
-};
+    {
+        .version = PIN_CFG_VERSION,
+        .set_spi0_dvp_data = 1};
 
 #endif
