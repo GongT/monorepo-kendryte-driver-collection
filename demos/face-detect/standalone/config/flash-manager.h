@@ -7,3 +7,4 @@
 #define KMODEL_SIZE 388776
 
 #endif // _KENDRYTE_IDE_FLASH_MANGER_OUT_H
+
