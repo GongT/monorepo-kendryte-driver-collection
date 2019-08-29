@@ -18,6 +18,7 @@
 {"name": "示例: pwm", "path": "demos/pwm//standalone"},
 {"name": "示例: pwm-play-audio", "path": "demos/pwm-play-audio//standalone"},
 {"name": "示例: pwm-wav", "path": "demos/pwm-wav//standalone"},
+{"name": "示例: redirect-stdio", "path": "demos/redirect-stdio//standalone"},
 {"name": "示例: screen", "path": "demos/screen//standalone"},
 {"name": "示例: sdcard-file", "path": "demos/sdcard-file//standalone"},
 {"name": "示例: sdcard-music", "path": "demos/sdcard-music//standalone"},
@@ -32,22 +33,14 @@
 {"name": "示例: ws2812b-spi", "path": "demos/ws2812b-spi//standalone"},
 {"name": "驱动: camera", "path": "drivers/camera//standalone"},
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
+{"name": "驱动: redirect-stdio", "path": "drivers/redirect-stdio//standalone"},
 {"name": "驱动: sdcard", "path": "drivers/sdcard//standalone"},
 {"name": "驱动: sdcard-file-bmp", "path": "drivers/sdcard-file-bmp//standalone"},
 {"name": "驱动: sdcard-file-wav", "path": "drivers/sdcard-file-wav//standalone"},
 {"name": "驱动: w25qxx", "path": "drivers/w25qxx//standalone"},
 {"name": "驱动: ws2812b", "path": "drivers/ws2812b//standalone"},
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
+{"name": "库: rgb565", "path": "libraries/rgb565/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-],
-"settings": {
-    "debug.openocd.port": 41999,
-    "files.associations": {
-        "math.h": "c",
-        "lcd.h": "c",
-        "string.h": "c",
-        "stdint.h": "c"
-    }
-}
-}
+]}

@@ -4,7 +4,9 @@
 extern "C" {
 #endif
 
-void camera_init();
+#include <uart.h>
+
+void redirect_stdio();
 
 #ifdef __cplusplus
 } // extern "C" {

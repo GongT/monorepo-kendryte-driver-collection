@@ -1,0 +1,16 @@
+{
+    "name": "kendryte/rgb565",
+    "version": "develop",
+    "type": "library",
+    "dependency": {},
+    "source": [
+        "src/empty.c"
+    ],
+    "include": [
+        "include"
+    ],
+    "header": [
+        "src"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+}

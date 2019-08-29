@@ -1,5 +1,8 @@
-#ifndef _RGB2BMP_H
-#define _RGB2BMP_H
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include <stdio.h>
 
@@ -39,4 +42,6 @@ typedef struct tagRGBQUAD
 
 int rgb565tobmp(char *buf, int width, int height, const char *filename);
 
+#ifdef __cplusplus
+} // extern "C" {
 #endif

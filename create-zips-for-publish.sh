@@ -7,6 +7,12 @@ rm -rf build/*
 mkdir -p build
 TARGET_DIR=$(realpath "build")
 
+ZIP_BIN=$(command -v zip)
+
+function zip() {
+	echo -e " > \e[2mzip $*\e[0m" >&2
+	"$ZIP_BIN" "$@"
+}
 
 function create_driver_zip() {
 	local PROJ="$1" TYPE="$2"
@@ -24,7 +30,7 @@ function create_driver_zip() {
 	zip \
 		"--exclude=.*" \
 		"--exclude=.*/*" \
-	       	"--exclude=build/*" \
+	   	"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
 		-ur "$TARGET" "${TYPE}" >/dev/null
 
@@ -37,13 +43,18 @@ for N in */ ; do
 	echo "Create zip file for driver $N..."
 	create_driver_zip "$N" "standalone"
 	create_driver_zip "$N" "freertos"
+	echo ""
 done
 cd ..
 
 function create_demo_zip() {
 	local PROJ="$1" TYPE="$2"
 
-	IFS='_' PROJ_PART=($(echo "$PROJ"))
+	local OIFS="$IFS"
+	local IFS='_'
+	local PROJ_PART=($(echo "$PROJ"))
+	local IFS="$OIFS"
+
 	if [[ -z "${PROJ_PART[1]}" ]]; then
 		local TARGET="$TARGET_DIR/${PROJ_PART[0]}-${TYPE}.zip"
 	else
@@ -64,7 +75,7 @@ function create_demo_zip() {
 	zip \
 		"--exclude=.*" \
 		"--exclude=.*/*" \
-	       	"--exclude=build/*" \
+	   	"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
 		-ur "$TARGET" "${TYPE}" >/dev/null
 
@@ -76,6 +87,7 @@ for N in */ ; do
 	N=$(basename "$N")
 	create_demo_zip "$N" "standalone"
 	create_demo_zip "$N" "freertos"
+	echo ""
 done
 cd ..
 
@@ -95,7 +107,7 @@ function create_library_zip() {
 	zip \
 		"--exclude=.*" \
 		"--exclude=.*/*" \
-	       	"--exclude=build/*" \
+	   	"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
 		-ur "$TARGET" "${PROJ}" >/dev/null
 }
@@ -104,6 +116,7 @@ cd libraries
 for N in */ ; do
 	N=$(basename "$N")
 	create_library_zip "$N"
+	echo ""
 done
 cd ..
 
@@ -123,7 +136,7 @@ function create_board_zip() {
 	zip \
 		"--exclude=.*" \
 		"--exclude=.*/*" \
-	       	"--exclude=build/*" \
+	   	"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
 		-ur "$TARGET" "${PROJ}" >/dev/null
 }
@@ -132,8 +145,33 @@ function create_board_zip() {
 #for N in */ ; do
 #	N=$(basename "$N")
 #	create_board_zip "$N"
+#	echo ""
 #done
 #cd ..
+
+
+function create_sdk_zip() {
+	local PROJ="$1"
+
+	local TARGET="$TARGET_DIR/${PROJ}-sdk.zip"
+	if ! [[ -e "kendryte-${PROJ}-sdk/kendryte-package.json" ]] ; then
+		echo "SDK not clone: $PROJ">&2
+		exit 1
+	fi
+
+	echo "Create zip file for SDK $PROJ..."
+
+	zip \
+		"--exclude=.*" \
+		"--exclude=./CMakeLists.txt" \
+		"--exclude=.*/*" \
+		"--exclude=build/*" \
+		"--exclude=kendryte_libraries/*" \
+		-ur "$TARGET" "kendryte-${PROJ}-sdk" >/dev/null
+}
+
+create_sdk_zip freertos
+create_sdk_zip standalone
 
 echo "All done."
 

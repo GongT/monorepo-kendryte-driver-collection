@@ -5,6 +5,7 @@
 {"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//freertos"},
 {"name": "驱动: w25qxx", "path": "drivers/w25qxx//freertos"},
 {"name": "库: ai_image", "path": "libraries/ai_image/"},
+{"name": "库: rgb565", "path": "libraries/rgb565/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Freertos SDK", "path": "kendryte-freertos-sdk"}
 ]}

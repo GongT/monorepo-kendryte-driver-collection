@@ -1,0 +1,23 @@
+{
+    "name": "kendryte/redirect-stdio-standalone",
+    "version": "develop",
+    "type": "executable",
+    "dependency": {
+        "kendryte/standalone-sdk": "develop",
+        "kendryte/redirect-stdio-standalone-driver": "develop"
+    },
+    "source": [
+        "src/*.c"
+    ],
+    "header": [
+        "src"
+    ],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "properties": {
+        "LINKER_LANGUAGE": "C"
+    },
+    "definitions": {
+        "STDIO_UART_NUM:raw": "UART_DEVICE_2",
+        "STDIO_UART_DMAC_CHANNEL:raw": "DMAC_CHANNEL4"
+    }
+}

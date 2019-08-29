@@ -95,8 +95,7 @@ static int dvp_irq(void *ctx)
         dvp_config_interrupt(DVP_CFG_START_INT_ENABLE | DVP_CFG_FINISH_INT_ENABLE, 0);
         dvp_clear_interrupt(DVP_STS_FRAME_FINISH);
         g_dvp_finish_flag = 1;
-    }
-    else
+    } else
     {
         dvp_start_convert();
         dvp_clear_interrupt(DVP_STS_FRAME_START);
@@ -104,8 +103,15 @@ static int dvp_irq(void *ctx)
     return 0;
 }
 
+void startupfun(void) __attribute__((constructor));
+void startupfun(void)
+{
+    printf("Startup method before main()\n");
+}
+
 void main(void)
 {
+    printf("main() is called\n");
     sysctl_pll_set_freq(SYSCTL_PLL0, PLL0_OUTPUT_FREQ);
     sysctl_pll_set_freq(SYSCTL_PLL1, PLL1_OUTPUT_FREQ);
     sysctl_set_spi0_dvp_data(1);
