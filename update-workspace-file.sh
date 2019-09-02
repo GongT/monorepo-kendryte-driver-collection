@@ -41,14 +41,25 @@ function output_demo() {
 }
 function output_library() {
 	local P="$1"
-	if ! [[ -e "$P/kendryte-package.json" ]]; then
-		mkdir -p "$P"
+	local TYPE="$2"
+	if [[ -e "$P/kendryte-package.json" ]]; then
+		echo -n '{"name": "库: '
+		echo -n "$(basename "$P")"
+		echo -n '", "path": "'
+		echo -n "$P"
+		echo '"},'
+		return
+	fi
+	mkdir -p "$P"
+
+	if ! [[ -e "$P/$TYPE/kendryte-package.json" ]]; then
+		mkdir -p "$P/$TYPE"
 		return
 	fi
 	echo -n '{"name": "库: '
 	echo -n "$(basename "$P")"
 	echo -n '", "path": "'
-	echo -n "$P"
+	echo -n "$P/$TYPE"
 	echo '"},'
 }
 function output_board() {
@@ -70,13 +81,13 @@ export -f output_demo
 
 ls -d demos/*/ | xargs -IF bash -c "output_demo 'F' standalone" >> $MONO_FILE_STANDALONE
 ls -d drivers/*/ | xargs -IF bash -c "output_driver 'F' standalone" >> $MONO_FILE_STANDALONE
-ls -d libraries/*/ | xargs -IF bash -c "output_library 'F'" >> $MONO_FILE_STANDALONE
+ls -d libraries/*/ | xargs -IF bash -c "output_library 'F' standalone" >> $MONO_FILE_STANDALONE
 ls -d boards/*/ | xargs -IF bash -c "output_board 'F'" >> $MONO_FILE_STANDALONE
 echo '{"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}' >> $MONO_FILE_STANDALONE
 
 ls -d demos/*/ | xargs -IF bash -c "output_demo 'F' freertos" >> $MONO_FILE_FREERTOS
 ls -d drivers/*/ | xargs -IF bash -c "output_driver 'F' freertos" >> $MONO_FILE_FREERTOS
-ls -d libraries/*/ | xargs -IF bash -c "output_library 'F'" >> $MONO_FILE_FREERTOS
+ls -d libraries/*/ | xargs -IF bash -c "output_library 'F' freertos" >> $MONO_FILE_FREERTOS
 ls -d boards/*/ | xargs -IF bash -c "output_board 'F'" >> $MONO_FILE_FREERTOS
 echo '{"name": "Freertos SDK", "path": "kendryte-freertos-sdk"}' >> $MONO_FILE_FREERTOS
 

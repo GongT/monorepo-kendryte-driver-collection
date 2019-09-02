@@ -1,5 +1,5 @@
 {
-    "name": "kendryte/redirect-stdio-standalone-driver",
+    "name": "kendryte/redirect-stdio-standalone",
     "version": "develop",
     "type": "library",
     "dependency": {
@@ -15,6 +15,9 @@
         "src"
     ],
     "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "properties": {
+        "LINKER_LANGUAGE": "C"
+    },
     "definitions": {
         "STDIO_UART_NUM:raw": "UART_DEVICE_3",
         "STDIO_UART_BAUDRATE:raw": "2000000",
@@ -23,9 +26,5 @@
         "STDIO_UART_PARITY:raw": "UART_PARITY_EVEN",
         "STDIO_UART_CACHE_SIZE:raw": "32",
         "STDIO_UART_DMAC_CHANNEL:raw": "-1"
-    },
-    "link_flags": [],
-    "properties": {
-        "LINKER_LANGUAGE": "C"
     }
 }

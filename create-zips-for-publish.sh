@@ -13,16 +13,21 @@ function zip() {
 	echo -e " > \e[2mzip $*\e[0m" >&2
 	"$ZIP_BIN" "$@"
 }
+function ensure_dir() {
+	mkdir -p "$(dirname "${1}")"
+}
 
 function create_driver_zip() {
 	local PROJ="$1" TYPE="$2"
-	local TARGET="$TARGET_DIR/${PROJ}-${TYPE}-driver.zip"
+	local TARGET="$TARGET_DIR/driver/${PROJ}-${TYPE}-driver.zip"
+
 	cd "$PROJ"
 	if ! [[ -e "$TYPE/kendryte-package.json" ]] ; then
 		echo -e "\tskip $PROJ ($TYPE)"
 		cd ..
 		return
 	fi
+	ensure_dir "$TARGET"
 	if ! [[ -e "README.md" ]] ; then
 		touch README.md
 	fi
@@ -56,9 +61,9 @@ function create_demo_zip() {
 	local IFS="$OIFS"
 
 	if [[ -z "${PROJ_PART[1]}" ]]; then
-		local TARGET="$TARGET_DIR/${PROJ_PART[0]}-${TYPE}.zip"
+		local TARGET="$TARGET_DIR/demo/${PROJ_PART[0]}-${TYPE}.zip"
 	else
-		local TARGET="$TARGET_DIR/${PROJ_PART[0]}-${TYPE}-${PROJ_PART[1]}.zip"
+		local TARGET="$TARGET_DIR/demo/${PROJ_PART[0]}-${TYPE}-${PROJ_PART[1]}.zip"
 	fi
 	cd "$PROJ"
 	if ! [[ -e "$TYPE/kendryte-package.json" ]] ; then
@@ -67,6 +72,7 @@ function create_demo_zip() {
 		return
 	fi
 
+	ensure_dir "$TARGET"
 	echo "Create zip file for demo $PROJ ($TYPE)..."
 	if ! [[ -e "README.md" ]] ; then
 		touch README.md
@@ -91,16 +97,44 @@ for N in */ ; do
 done
 cd ..
 
+function create_library_zip_typed() {
+	local PROJ="$1" TYPE="$2"
+	local TARGET="$TARGET_DIR/library/${PROJ}-${TYPE}.zip"
+
+	cd "$PROJ"
+	if ! [[ -e "$TYPE/kendryte-package.json" ]] ; then
+		echo -e "\tskip $PROJ ($TYPE)"
+		cd ..
+		return
+	fi
+
+	ensure_dir "$TARGET"
+	echo "Create zip file for library $PROJ ($TYPE)..."
+	if ! [[ -e "README.md" ]] ; then
+		touch README.md
+	fi
+	zip "$TARGET" README.md >/dev/null
+	zip \
+		"--exclude=.*" \
+		"--exclude=.*/*" \
+	   	"--exclude=build/*" \
+		"--exclude=kendryte_libraries/*" \
+		-ur "$TARGET" "${TYPE}" >/dev/null
+
+	cd ..
+}
+
 function create_library_zip() {
 	local PROJ="$1"
 
-	local TARGET="$TARGET_DIR/${PROJ}.zip"
+	local TARGET="$TARGET_DIR/library/${PROJ}.zip"
 	if ! [[ -e "$PROJ/kendryte-package.json" ]] ; then
 		echo -e "\tskip $PROJ"
 		return
 	fi
 
-	echo "Create zip file for library $PROJ..."
+	ensure_dir "$TARGET"
+	echo "Create zip file for library $PROJ (common)..."
 	if ! [[ -e "$PROJ/README.md" ]] ; then
 		touch "$PROJ/README.md"
 	fi
@@ -115,7 +149,13 @@ function create_library_zip() {
 cd libraries
 for N in */ ; do
 	N=$(basename "$N")
-	create_library_zip "$N"
+	if [[ -e "$N/kendryte-package.json" ]]; then
+		create_library_zip "$N"
+	else
+		create_library_zip_typed "$N" "standalone"
+		create_library_zip_typed "$N" "freertos"
+	fi
+
 	echo ""
 done
 cd ..
@@ -123,12 +163,13 @@ cd ..
 function create_board_zip() {
 	local PROJ="$1"
 
-	local TARGET="$TARGET_DIR/${PROJ}.zip"
+	local TARGET="$TARGET_DIR/board/board-${PROJ}.zip"
 	if ! [[ -e "$PROJ/kendryte-package.json" ]] ; then
 		echo -e "\tskip $PROJ"
 		return
 	fi
 
+	ensure_dir "$TARGET"
 	echo "Create zip file for board $PROJ..."
 	if ! [[ -e "$PROJ/README.md" ]] ; then
 		touch "$PROJ/README.md"
@@ -153,12 +194,13 @@ function create_board_zip() {
 function create_sdk_zip() {
 	local PROJ="$1"
 
-	local TARGET="$TARGET_DIR/${PROJ}-sdk.zip"
+	local TARGET="$TARGET_DIR/sdk/${PROJ}-sdk.zip"
 	if ! [[ -e "kendryte-${PROJ}-sdk/kendryte-package.json" ]] ; then
 		echo "SDK not clone: $PROJ">&2
 		exit 1
 	fi
 
+	ensure_dir "$TARGET"
 	echo "Create zip file for SDK $PROJ..."
 
 	zip \

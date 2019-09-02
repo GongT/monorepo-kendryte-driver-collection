@@ -3,14 +3,32 @@
 cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 PROJ=$1
+case "$2" in
+s)
+	TYPE="standalone"
+	;;
+r)
+	TYPE="freertos"
+	;;
+c)
+	TYPE="common"
+	;;
+esac
 
-if [[ -z "$PROJ" ]] ; then
-	echo -e "Usage: $0 \e[38;5;14m<ProjectName>\e[0m
-Eg: $0 led to create new library 'led'" >&2
+if [[ -z "$PROJ" ]] || [[ -z "$TYPE" ]] ; then
+	echo -e "Usage: $0 \e[38;5;14m<ProjectName> \e[38;5;9m<'s' or 'r' or 'c'>\e[0m
+Eg: '$0 image-process c' to create new common library 'image-process'" >&2
 	exit 1
 fi
 
-PACKAGE="libraries/$PROJ/kendryte-package.json"
+if [[ "$TYPE" == "common" ]]; then
+    TYPE=''
+    MTYPE=''
+else
+    MTYPE="-${TYPE}"
+fi
+
+PACKAGE="libraries/$PROJ/$TYPE/kendryte-package.json"
 
 echo "Will create '$PACKAGE' file"
 if [[ -e "$PACKAGE" ]]; then
@@ -21,9 +39,9 @@ fi
 mkdir -p "$(dirname "$PACKAGE")"
 mkdir -p "$(dirname "$PACKAGE")/include"
 mkdir -p "$(dirname "$PACKAGE")/src"
-cat > "$PACKAGE" <<PACKAGE_FILE 
+cat > "$PACKAGE" <<PACKAGE_FILE
 {
-    "name": "kendryte/${PROJ}",
+    "name": "kendryte/${PROJ}${MTYPE}",
     "version": "develop",
     "type": "library",
     "dependency": {
