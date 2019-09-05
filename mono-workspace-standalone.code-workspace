@@ -22,6 +22,7 @@
 {"name": "示例: screen", "path": "demos/screen//standalone"},
 {"name": "示例: sdcard-file", "path": "demos/sdcard-file//standalone"},
 {"name": "示例: sdcard-music", "path": "demos/sdcard-music//standalone"},
+{"name": "示例: serial-echo-back", "path": "demos/serial-echo-back//standalone"},
 {"name": "示例: spi-slave", "path": "demos/spi-slave//standalone"},
 {"name": "示例: timer", "path": "demos/timer//standalone"},
 {"name": "示例: uart-dma-irq", "path": "demos/uart-dma-irq//standalone"},
@@ -43,4 +44,14 @@
 {"name": "库: rgb565", "path": "libraries/rgb565/"},
 {"name": "开发板: KD233", "path": "boards/KD233/"},
 {"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-]}
+],
+"settings": {
+    "files.associations": {
+        "string.h": "c",
+        "super-flash.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "w25qxx.h": "c"
+    }
+}
+}

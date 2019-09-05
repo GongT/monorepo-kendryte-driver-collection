@@ -32,8 +32,7 @@ void io_mux_init(uint8_t index)
         fpioa_set_function(13, FUNC_SPI0_D1);
         fpioa_set_function(15, FUNC_SPI0_D2);
         fpioa_set_function(17, FUNC_SPI0_D3);
-    }
-    else if(index == 2)
+    } else if(index == 2)
     {
         fpioa_set_function(30, FUNC_SPI1_SS0);
         fpioa_set_function(32, FUNC_SPI1_SCLK);

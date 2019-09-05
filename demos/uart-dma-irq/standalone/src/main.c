@@ -103,14 +103,12 @@ int uart_recv_done(void *ctx)
         {
             recv_flag = 1;
             continue;
-        }
-        else if(v_buf[i] == 0xAA && recv_flag == 1)
+        } else if(v_buf[i] == 0xAA && recv_flag == 1)
         {
             recv_flag = 2;
             g_cmd_cnt = 0;
             continue;
-        }
-        else if(recv_flag == 2 && g_cmd_cnt < CMD_LENTH)
+        } else if(recv_flag == 2 && g_cmd_cnt < CMD_LENTH)
         {
             g_cmd[g_cmd_cnt++] = v_buf[i];
             if(g_cmd_cnt >= CMD_LENTH)
@@ -119,8 +117,7 @@ int uart_recv_done(void *ctx)
                 recv_flag = 0;
             }
             continue;
-        }
-        else
+        } else
         {
             recv_flag = 0;
         }

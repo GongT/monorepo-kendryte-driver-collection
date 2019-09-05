@@ -3,7 +3,9 @@
     "name": "kendryte/w25qxx-standalone-driver",
     "version": "develop",
     "source": [
-        "src/w25qxx.c"
+        "src/w25qxx.c",
+        "src/shared.c",
+        "src/w25qxx_dma.c"
     ],
     "dependency": {
         "kendryte/standalone-sdk": "develop"

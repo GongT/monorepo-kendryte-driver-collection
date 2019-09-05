@@ -1,0 +1,13 @@
+{
+    "name": "kendryte/serial-echo-back-standalone",
+    "version": "develop",
+    "type": "executable",
+    "dependency": {
+        "kendryte/standalone-sdk": "develop"
+    },
+    "source": [
+        "src/main.c"
+    ],
+    "header": [],
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+}

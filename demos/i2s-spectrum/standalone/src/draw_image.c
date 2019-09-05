@@ -25,8 +25,7 @@ void update_height(int index, int value)
     if(last_value[index] > value)
     {
         lcd_fill_rectangle(value, index * bar_width, last_value[index] + 1, index * bar_width + bar_width - 2, BAR_BACKGROUND);
-    }
-    else
+    } else
     {
         int v = last_value[index];
         if(v != 0)
@@ -61,8 +60,7 @@ void update_bars(float *power, float max_power, int count)
         {
             sum += power[(int)index];
             sum_count++;
-        }
-        else
+        } else
         {
             sum += power[(int)index] * mean;
             sum_count++;

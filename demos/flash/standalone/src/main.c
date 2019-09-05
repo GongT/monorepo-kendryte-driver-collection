@@ -32,8 +32,7 @@ void io_mux_init(uint8_t index)
         fpioa_set_function(13, FUNC_SPI0_D1);
         fpioa_set_function(15, FUNC_SPI0_D2);
         fpioa_set_function(17, FUNC_SPI0_D3);
-    }
-    else if(index == 2)
+    } else if(index == 2)
     {
         fpioa_set_function(30, FUNC_SPI1_SS0);
         fpioa_set_function(32, FUNC_SPI1_SCLK);
@@ -92,7 +91,8 @@ int main(void)
     for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("standard fast read test start\n");
-    /*w25qxx_read_data(0, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST);*/
+    /*w25qxx_read_data(0, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST
+);*/
     w25qxx_read_data(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST);
     for(index = 0; index < TEST_NUMBER; index++)
     {

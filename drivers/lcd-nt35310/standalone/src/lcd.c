@@ -58,8 +58,7 @@ void lcd_set_direction(lcd_dir_t dir)
     {
         lcd_ctl.width = LCD_Y_MAX - 1;
         lcd_ctl.height = LCD_X_MAX - 1;
-    }
-    else
+    } else
     {
         lcd_ctl.width = LCD_X_MAX - 1;
         lcd_ctl.height = LCD_Y_MAX - 1;
@@ -196,12 +195,16 @@ void lcd_fill_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint
         y1 = y2;
         y2 = tmp;
     }
-    if(x1>LCD_X_MAX) x1=LCD_X_MAX;
-    if(x2>LCD_X_MAX) x2=LCD_X_MAX;
-    if(y1>LCD_Y_MAX) y1=LCD_Y_MAX;
-    if(y2>LCD_Y_MAX) y2=LCD_Y_MAX;
+    if(x1 > LCD_X_MAX)
+        x1 = LCD_X_MAX;
+    if(x2 > LCD_X_MAX)
+        x2 = LCD_X_MAX;
+    if(y1 > LCD_Y_MAX)
+        y1 = LCD_Y_MAX;
+    if(y2 > LCD_Y_MAX)
+        y2 = LCD_Y_MAX;
 
-    int buff_size =1+ (x2 - x1 + 1) * (y2 - y1 + 1) / 2;
+    int buff_size = 1 + (x2 - x1 + 1) * (y2 - y1 + 1) / 2;
     uint32_t data_buf[buff_size] __attribute__((aligned(64)));
     for(int index = 0; index < buff_size; index++)
         data_buf[index] = data;

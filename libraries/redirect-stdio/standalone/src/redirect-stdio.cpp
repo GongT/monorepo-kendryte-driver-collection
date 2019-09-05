@@ -54,5 +54,8 @@ void redirect_stdio()
         push_send(c);
         return c;
     });
-    send("\n" "\x1B" "c\r", 4);
+    send("\n"
+         "\x1B"
+         "c\r",
+         4);
 }

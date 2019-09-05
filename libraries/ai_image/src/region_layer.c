@@ -172,8 +172,7 @@ static void correct_region_boxes(region_layer_t *rl, box_t *boxes)
     {
         new_w = net_width;
         new_h = (image_height * net_width) / image_width;
-    }
-    else
+    } else
     {
         new_h = net_height;
         new_w = (image_width * net_height) / image_height;

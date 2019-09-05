@@ -38,8 +38,7 @@ static int on_irq_dvp(void *ctx)
 
         dvp_clear_interrupt(DVP_STS_FRAME_FINISH);
         g_dvp_finish_flag = 1;
-    }
-    else
+    } else
     {
         if(g_dvp_finish_flag == 0)
             dvp_start_convert();

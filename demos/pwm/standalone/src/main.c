@@ -37,8 +37,7 @@ int timer_callback(void *ctx)
     {
         cnt = 1.0;
         flag = 1;
-    }
-    else if(cnt < 0.0)
+    } else if(cnt < 0.0)
     {
         cnt = 0.0;
         flag = 0;

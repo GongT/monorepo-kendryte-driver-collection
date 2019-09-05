@@ -1,0 +1,8 @@
+{
+    "selectedChip": "Kendryte K210",
+    "funcPinMap": {
+        "GPIOHS31": "B12",
+        "UART1_RX": "H11",
+        "UART1_TX": "H12"
+    }
+}

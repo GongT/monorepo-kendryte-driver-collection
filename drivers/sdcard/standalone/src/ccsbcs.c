@@ -243,14 +243,12 @@ WCHAR ff_convert(           /* Converted character, Returns zero on error */
     if(chr < 0x80)
     { /* ASCII */
         c = chr;
-    }
-    else
+    } else
     {
         if(dir)
         { /* OEM code to Unicode */
             c = (chr >= 0x100) ? 0 : Tbl[chr - 0x80];
-        }
-        else
+        } else
         { /* Unicode to OEM code */
             for(c = 0; c < 0x80; c++)
             {

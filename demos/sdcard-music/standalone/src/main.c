@@ -119,8 +119,7 @@ static int on_irq_dma3(void *ctx)
         wav_file.buff_current_len = wav_file.buff1_read_len;
         if(wav_file.buff1_len > wav_file.buff1_read_len)
             wav_file.buff_end = 1;
-    }
-    else if(wav_file.buff_index == 1)
+    } else if(wav_file.buff_index == 1)
     {
         if(wav_file.buff0_used == 0)
         {
@@ -152,8 +151,7 @@ FRESULT sd_write_test(TCHAR *path)
     if((ret = f_stat(path, &v_fileinfo)) == FR_OK)
     {
         printf("%s length is %lld\n", path, v_fileinfo.fsize);
-    }
-    else
+    } else
     {
         printf("%s fstat err [%d]\n", path, ret);
     }
@@ -165,8 +163,7 @@ FRESULT sd_write_test(TCHAR *path)
         if(ret != FR_OK)
         {
             printf("Read %s err[%d]\n", path, ret);
-        }
-        else
+        } else
         {
             printf("Read :> %s %d bytes lenth\n", v_buf, v_ret_len);
         }
@@ -177,8 +174,7 @@ FRESULT sd_write_test(TCHAR *path)
     {
         printf("open file %s err[%d]\n", path, ret);
         return ret;
-    }
-    else
+    } else
     {
         printf("Open %s ok\n", path);
     }
@@ -192,8 +188,7 @@ FRESULT sd_write_test(TCHAR *path)
     if(ret != FR_OK)
     {
         printf("Write %s err[%d]\n", path, ret);
-    }
-    else
+    } else
     {
         printf("Write %d bytes to %s ok\n", v_ret_len, path);
     }
@@ -254,8 +249,7 @@ static int wav_test(TCHAR *path)
                 ;
             printf("decode finish\n");
             break;
-        }
-        else if(FILE_FAIL == status)
+        } else if(FILE_FAIL == status)
         {
             printf("decode init fail\n");
             break;
