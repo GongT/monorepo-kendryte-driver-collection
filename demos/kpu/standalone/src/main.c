@@ -149,9 +149,8 @@ int main(void)
     plic_init();
 
     printf("flash init\n");
-    w25qxx_init(3, 0);
-    w25qxx_enable_quad_mode();
-    w25qxx_read_data(KMODEL_START, model, KMODEL_SIZE, W25QXX_QUAD_FAST);
+    w25qxx_init(3, 0, 60000000);
+    w25qxx_read_data(KMODEL_START, model, KMODEL_SIZE);
 
     lable_init();
 

@@ -1,57 +1,194 @@
-{"folders":[
-{"name": "示例: aes", "path": "demos/aes//standalone"},
-{"name": "示例: apu", "path": "demos/apu//standalone"},
-{"name": "示例: camera-screen", "path": "demos/camera-screen//standalone"},
-{"name": "示例: camera-sdcard", "path": "demos/camera-sdcard//standalone"},
-{"name": "示例: face-detect", "path": "demos/face-detect//standalone"},
-{"name": "示例: fft", "path": "demos/fft//standalone"},
-{"name": "示例: flash-dma", "path": "demos/flash-dma//standalone"},
-{"name": "示例: flash", "path": "demos/flash//standalone"},
-{"name": "示例: gpio-button", "path": "demos/gpio-button//standalone"},
-{"name": "示例: gpio-number", "path": "demos/gpio-number//standalone"},
-{"name": "示例: i2c-slave", "path": "demos/i2c-slave//standalone"},
-{"name": "示例: i2s-dma", "path": "demos/i2s-dma//standalone"},
-{"name": "示例: i2s-pcm", "path": "demos/i2s-pcm//standalone"},
-{"name": "示例: i2s-spectrum", "path": "demos/i2s-spectrum//standalone"},
-{"name": "示例: i2s-through", "path": "demos/i2s-through//standalone"},
-{"name": "示例: kpu", "path": "demos/kpu//standalone"},
-{"name": "示例: pwm-play-audio", "path": "demos/pwm-play-audio//standalone"},
-{"name": "示例: pwm-wav", "path": "demos/pwm-wav//standalone"},
-{"name": "示例: pwm", "path": "demos/pwm//standalone"},
-{"name": "示例: redirect-stdio", "path": "demos/redirect-stdio//standalone"},
-{"name": "示例: screen", "path": "demos/screen//standalone"},
-{"name": "示例: sdcard-file", "path": "demos/sdcard-file//standalone"},
-{"name": "示例: sdcard-music", "path": "demos/sdcard-music//standalone"},
-{"name": "示例: serial-echo-back", "path": "demos/serial-echo-back//standalone"},
-{"name": "示例: spi-slave", "path": "demos/spi-slave//standalone"},
-{"name": "示例: timer", "path": "demos/timer//standalone"},
-{"name": "示例: uart-dma-irq", "path": "demos/uart-dma-irq//standalone"},
-{"name": "示例: uart-dma", "path": "demos/uart-dma//standalone"},
-{"name": "示例: uart-interrupt", "path": "demos/uart-interrupt//standalone"},
-{"name": "示例: uart", "path": "demos/uart//standalone"},
-{"name": "示例: watchdog", "path": "demos/watchdog//standalone"},
-{"name": "示例: ws2812b-i2s", "path": "demos/ws2812b-i2s//standalone"},
-{"name": "示例: ws2812b-spi", "path": "demos/ws2812b-spi//standalone"},
-{"name": "驱动: camera", "path": "drivers/camera//standalone"},
-{"name": "驱动: lcd-nt35310", "path": "drivers/lcd-nt35310//standalone"},
-{"name": "驱动: sdcard-file-bmp", "path": "drivers/sdcard-file-bmp//standalone"},
-{"name": "驱动: sdcard-file-wav", "path": "drivers/sdcard-file-wav//standalone"},
-{"name": "驱动: sdcard", "path": "drivers/sdcard//standalone"},
-{"name": "驱动: w25qxx", "path": "drivers/w25qxx//standalone"},
-{"name": "驱动: ws2812b", "path": "drivers/ws2812b//standalone"},
-{"name": "库: ai_image", "path": "libraries/ai_image/"},
-{"name": "库: redirect-stdio", "path": "libraries/redirect-stdio//standalone"},
-{"name": "库: rgb565", "path": "libraries/rgb565/"},
-{"name": "开发板: KD233", "path": "boards/KD233/"},
-{"name": "Standalone SDK", "path": "kendryte-standalone-sdk"}
-],
-"settings": {
-    "files.associations": {
-        "string.h": "c",
-        "super-flash.h": "c",
-        "unistd.h": "c",
-        "stdio.h": "c",
-        "w25qxx.h": "c"
+{
+    "folders": [
+        {
+            "name": "示例: aes",
+            "path": "demos/aes/standalone"
+        },
+        {
+            "name": "示例: apu",
+            "path": "demos/apu/standalone"
+        },
+        {
+            "name": "示例: camera-screen",
+            "path": "demos/camera-screen/standalone"
+        },
+        {
+            "name": "示例: camera-sdcard",
+            "path": "demos/camera-sdcard/standalone"
+        },
+        {
+            "name": "示例: face-detect",
+            "path": "demos/face-detect/standalone"
+        },
+        {
+            "name": "示例: fft",
+            "path": "demos/fft/standalone"
+        },
+        {
+            "name": "示例: flash-dma",
+            "path": "demos/flash-dma/standalone"
+        },
+        {
+            "name": "示例: flash",
+            "path": "demos/flash/standalone"
+        },
+        {
+            "name": "示例: gpio-button",
+            "path": "demos/gpio-button/standalone"
+        },
+        {
+            "name": "示例: i2c-slave",
+            "path": "demos/i2c-slave/standalone"
+        },
+        {
+            "name": "示例: i2s-dma",
+            "path": "demos/i2s-dma/standalone"
+        },
+        {
+            "name": "示例: i2s-pcm",
+            "path": "demos/i2s-pcm/standalone"
+        },
+        {
+            "name": "示例: i2s-spectrum",
+            "path": "demos/i2s-spectrum/standalone"
+        },
+        {
+            "name": "示例: i2s-through",
+            "path": "demos/i2s-through/standalone"
+        },
+        {
+            "name": "示例: kpu",
+            "path": "demos/kpu/standalone"
+        },
+        {
+            "name": "示例: pwm-play-audio",
+            "path": "demos/pwm-play-audio/standalone"
+        },
+        {
+            "name": "示例: pwm-wav",
+            "path": "demos/pwm-wav/standalone"
+        },
+        {
+            "name": "示例: pwm",
+            "path": "demos/pwm/standalone"
+        },
+        {
+            "name": "示例: redirect-stdio",
+            "path": "demos/redirect-stdio/standalone"
+        },
+        {
+            "name": "示例: screen",
+            "path": "demos/screen/standalone"
+        },
+        {
+            "name": "示例: sdcard-file",
+            "path": "demos/sdcard-file/standalone"
+        },
+        {
+            "name": "示例: sdcard-music",
+            "path": "demos/sdcard-music/standalone"
+        },
+        {
+            "name": "示例: serial-echo-back",
+            "path": "demos/serial-echo-back/standalone"
+        },
+        {
+            "name": "示例: spi-slave",
+            "path": "demos/spi-slave/standalone"
+        },
+        {
+            "name": "示例: timer",
+            "path": "demos/timer/standalone"
+        },
+        {
+            "name": "示例: uart-dma-irq",
+            "path": "demos/uart-dma-irq/standalone"
+        },
+        {
+            "name": "示例: uart-dma",
+            "path": "demos/uart-dma/standalone"
+        },
+        {
+            "name": "示例: uart-interrupt",
+            "path": "demos/uart-interrupt/standalone"
+        },
+        {
+            "name": "示例: uart",
+            "path": "demos/uart/standalone"
+        },
+        {
+            "name": "示例: watchdog",
+            "path": "demos/watchdog/standalone"
+        },
+        {
+            "name": "示例: ws2812b-i2s",
+            "path": "demos/ws2812b-i2s/standalone"
+        },
+        {
+            "name": "示例: ws2812b-spi",
+            "path": "demos/ws2812b-spi/standalone"
+        },
+        {
+            "name": "驱动: camera",
+            "path": "drivers/camera/standalone"
+        },
+        {
+            "name": "驱动: lcd-nt35310",
+            "path": "drivers/lcd-nt35310/standalone"
+        },
+        {
+            "name": "驱动: sdcard-file-bmp",
+            "path": "drivers/sdcard-file-bmp/standalone"
+        },
+        {
+            "name": "驱动: sdcard-file-wav",
+            "path": "drivers/sdcard-file-wav/standalone"
+        },
+        {
+            "name": "驱动: sdcard",
+            "path": "drivers/sdcard/standalone"
+        },
+        {
+            "name": "驱动: w25qxx",
+            "path": "drivers/w25qxx/standalone"
+        },
+        {
+            "name": "驱动: ws2812b",
+            "path": "drivers/ws2812b/standalone"
+        },
+        {
+            "name": "库: ai_image",
+            "path": "libraries/ai_image"
+        },
+        {
+            "name": "库: redirect-stdio",
+            "path": "libraries/redirect-stdio/standalone"
+        },
+        {
+            "name": "库: rgb565",
+            "path": "libraries/rgb565"
+        },
+        {
+            "name": "开发板: KD233",
+            "path": "boards/KD233"
+        },
+        {
+            "name": "Standalone SDK",
+            "path": "kendryte-standalone-sdk"
+        },
+        {
+            "name": "示例: gpio-number",
+            "path": "demos/gpio-number/standalone"
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "string.h": "c",
+            "super-flash.h": "c",
+            "unistd.h": "c",
+            "stdio.h": "c",
+            "w25qxx.h": "c",
+            "stdint.h": "c"
+        }
     }
-}
 }

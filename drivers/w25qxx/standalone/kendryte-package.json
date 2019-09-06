@@ -4,7 +4,6 @@
     "version": "develop",
     "source": [
         "src/w25qxx.c",
-        "src/shared.c",
         "src/w25qxx_dma.c"
     ],
     "dependency": {

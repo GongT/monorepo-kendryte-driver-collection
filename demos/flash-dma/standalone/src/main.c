@@ -53,8 +53,6 @@ int main(void)
 
     w25qxx_init_dma(spi_index, 0);
 
-    w25qxx_enable_quad_mode_dma();
-
     w25qxx_read_id_dma(&manuf_id, &device_id);
     printf("manuf_id:0x%02x, device_id:0x%02x\n", manuf_id, device_id);
     if((manuf_id != 0xEF && manuf_id != 0xC8) || (device_id != 0x17 && device_id != 0x16))
@@ -66,10 +64,6 @@ int main(void)
     /*write data*/
     for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = (uint8_t)(index);
-    printf("erase sector\n");
-    w25qxx_sector_erase_dma(DATA_ADDRESS);
-    while(w25qxx_is_busy_dma() == W25QXX_BUSY)
-        ;
     printf("write data\n");
     w25qxx_write_data_direct_dma(DATA_ADDRESS, data_buf, TEST_NUMBER);
 
@@ -91,7 +85,8 @@ int main(void)
     for(index = 0; index < TEST_NUMBER; index++)
         data_buf[index] = 0;
     printf("standard fast read test start\n");
-    /*w25qxx_read_data(0, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST);*/
+    /*w25qxx_read_data(0, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST
+);*/
     w25qxx_read_data_dma(DATA_ADDRESS, data_buf, TEST_NUMBER, W25QXX_STANDARD_FAST);
     for(index = 0; index < TEST_NUMBER; index++)
     {

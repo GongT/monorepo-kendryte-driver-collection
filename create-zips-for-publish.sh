@@ -190,7 +190,7 @@ function create_board_zip() {
 #done
 #cd ..
 
-
+ND=$(date +%Y%m%d%H%M%S)
 function create_sdk_zip() {
 	local PROJ="$1"
 
@@ -203,6 +203,11 @@ function create_sdk_zip() {
 	ensure_dir "$TARGET"
 	echo "Create zip file for SDK $PROJ..."
 
+	rm -rf "/tmp/kendryte-${PROJ}-sdk"
+	cp -r "kendryte-${PROJ}-sdk" "/tmp/kendryte-${PROJ}-sdk"
+	sed -Ei 's#"KENDRYTE_SDK_RELEASE_DATE:raw":[^,]+#"KENDRYTE_SDK_RELEASE_DATE:raw": "'$ND'"#g' "/tmp/kendryte-${PROJ}-sdk/kendryte-package.json"
+	cd /tmp
+
 	zip \
 		"--exclude=.*" \
 		"--exclude=./CMakeLists.txt" \
@@ -210,6 +215,8 @@ function create_sdk_zip() {
 		"--exclude=build/*" \
 		"--exclude=kendryte_libraries/*" \
 		-ur "$TARGET" "kendryte-${PROJ}-sdk" >/dev/null
+
+	cd -
 }
 
 create_sdk_zip freertos

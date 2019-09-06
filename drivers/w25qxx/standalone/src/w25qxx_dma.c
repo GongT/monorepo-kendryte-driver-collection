@@ -16,8 +16,16 @@
 #include <fpioa.h>
 #include <spi.h>
 #include <sysctl.h>
-#include "shared.h"
 #include "w25qxx.h"
+
+static uint32_t spi_bus_no = 0;
+static uint32_t spi_chip_select = 0;
+
+static w25qxx_status_t (*w25qxx_page_program_fun)(uint32_t addr,
+                                                  uint8_t *data_buf,
+                                                  uint32_t length);
+static w25qxx_status_t (*w25qxx_read_fun)(uint32_t addr, uint8_t *data_buf,
+                                          uint32_t length);
 
 static w25qxx_status_t w25qxx_stand_read_data_dma(uint32_t addr, uint8_t *data_buf, uint32_t length);
 static w25qxx_status_t w25qxx_quad_read_data_dma(uint32_t addr, uint8_t *data_buf, uint32_t length);
@@ -57,8 +65,7 @@ w25qxx_status_t w25qxx_init_dma(uint8_t spi_index, uint8_t spi_ss)
     spi_chip_select = spi_ss;
     spi_init(spi_bus_no, SPI_WORK_MODE_0, SPI_FF_STANDARD, DATALENGTH, 0);
     spi_set_clk_rate(spi_bus_no, 25000000);
-    w25qxx_page_program_fun = w25qxx_page_program_dma;
-    w25qxx_read_fun = w25qxx_stand_read_data_dma;
+
     return W25QXX_OK;
 }
 
@@ -81,7 +88,7 @@ static w25qxx_status_t w25qxx_write_enable_dma(void)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_write_status_reg_dma(uint8_t reg1_data, uint8_t reg2_data)
+static w25qxx_status_t w25qxx_write_status_reg_dma(uint8_t reg1_data, uint8_t reg2_data)
 {
     uint8_t cmd[3] = {WRITE_REG1, reg1_data, reg2_data};
 
@@ -90,7 +97,7 @@ w25qxx_status_t w25qxx_write_status_reg_dma(uint8_t reg1_data, uint8_t reg2_data
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_read_status_reg1_dma(uint8_t *reg_data)
+static w25qxx_status_t w25qxx_read_status_reg1_dma(uint8_t *reg_data)
 {
     uint8_t cmd[1] = {READ_REG1};
     uint8_t data[1] = {0};
@@ -100,7 +107,7 @@ w25qxx_status_t w25qxx_read_status_reg1_dma(uint8_t *reg_data)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_read_status_reg2_dma(uint8_t *reg_data)
+static w25qxx_status_t w25qxx_read_status_reg2_dma(uint8_t *reg_data)
 {
     uint8_t cmd[1] = {READ_REG2};
     uint8_t data[1] = {0};
@@ -110,7 +117,7 @@ w25qxx_status_t w25qxx_read_status_reg2_dma(uint8_t *reg_data)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_is_busy_dma(void)
+static w25qxx_status_t w25qxx_is_busy_dma(void)
 {
     uint8_t status = 0;
 
@@ -120,7 +127,7 @@ w25qxx_status_t w25qxx_is_busy_dma(void)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_sector_erase_dma(uint32_t addr)
+static w25qxx_status_t w25qxx_sector_erase_dma(uint32_t addr)
 {
     uint8_t cmd[4] = {SECTOR_ERASE};
 
@@ -132,7 +139,7 @@ w25qxx_status_t w25qxx_sector_erase_dma(uint32_t addr)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_32k_block_erase_dma(uint32_t addr)
+static w25qxx_status_t w25qxx_32k_block_erase_dma(uint32_t addr)
 {
     uint8_t cmd[4] = {BLOCK_32K_ERASE};
 
@@ -144,7 +151,7 @@ w25qxx_status_t w25qxx_32k_block_erase_dma(uint32_t addr)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_64k_block_erase_dma(uint32_t addr)
+static w25qxx_status_t w25qxx_64k_block_erase_dma(uint32_t addr)
 {
     uint8_t cmd[4] = {BLOCK_64K_ERASE};
 
@@ -156,7 +163,7 @@ w25qxx_status_t w25qxx_64k_block_erase_dma(uint32_t addr)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_chip_erase_dma(void)
+static w25qxx_status_t w25qxx_chip_erase_dma(void)
 {
     uint8_t cmd[1] = {CHIP_ERASE};
 
@@ -165,7 +172,7 @@ w25qxx_status_t w25qxx_chip_erase_dma(void)
     return W25QXX_OK;
 }
 
-w25qxx_status_t w25qxx_enable_quad_mode_dma(void)
+static w25qxx_status_t w25qxx_enable_quad_mode_dma(void)
 {
     uint8_t reg_data = 0;
 
@@ -177,21 +184,6 @@ w25qxx_status_t w25qxx_enable_quad_mode_dma(void)
     }
     w25qxx_page_program_fun = w25qxx_quad_page_program_dma;
     w25qxx_read_fun = w25qxx_quad_read_data_dma;
-    return W25QXX_OK;
-}
-
-w25qxx_status_t w25qxx_disable_quad_mode_dma(void)
-{
-    uint8_t reg_data = 0;
-
-    w25qxx_read_status_reg2(&reg_data);
-    if(reg_data & REG2_QUAL_MASK)
-    {
-        reg_data &= (~REG2_QUAL_MASK);
-        w25qxx_write_status_reg(0x00, reg_data);
-    }
-    w25qxx_page_program_fun = w25qxx_page_program_dma;
-    w25qxx_read_fun = w25qxx_stand_read_data_dma;
     return W25QXX_OK;
 }
 

@@ -44,8 +44,12 @@ int irq_gpiohs2(void *ctx)
 
 int main(void)
 {
+    sleep(2);
     plic_init();
     sysctl_enable_irq();
+
+    fpioa_set_function(26, FUNC_GPIOHS0);
+    fpioa_set_function(25, FUNC_GPIOHS1);
 
     gpiohs_set_drive_mode(GPIO_LED, GPIO_DM_OUTPUT);
     gpio_pin_value_t value = GPIO_PV_HIGH;

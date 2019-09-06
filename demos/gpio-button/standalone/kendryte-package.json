@@ -8,8 +8,9 @@
     "source": [
         "src/*.c"
     ],
-	"header": [
+    "header": [
         "src"
     ],
-    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection"
+    "homepage": "https://github.com/GongT/monorepo-kendryte-driver-collection",
+    "c_cpp_flags": []
 }
